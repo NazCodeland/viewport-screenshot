@@ -231,6 +231,16 @@
 <section class="dimensions"></section>
 
 <script>
+	/** FEATURE: Implement URL Screenshot UI
+	 *
+	 * - ability to edit dimensions
+	 * - URL to take a screenshot of
+	 * - options object with dimensions, viewport, etc.
+
+	 * TODO:
+	 * 	- need to store input:checked state
+	 */
+
 	const dimensions = [
 		"mobile",
 		"tablet",
@@ -317,5 +327,6 @@
 			dimensionsEl.appendChild(dimensionEl);
 		});
 	}
+
 	createDimensions(dimensions);
 </script>
