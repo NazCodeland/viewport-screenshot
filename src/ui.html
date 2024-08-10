@@ -1,5 +1,8 @@
+<!-- --------------------------------------------------------------- -->
 <style>
 	:root {
+		--figma-color-bg-theme: var(--figma-color-text);
+		--figma-color-text-theme: var(--figma-color-bg);
 		--screenshot-color-bg-checked: #1b6ef3;
 		--screenshot-color-bg-checkmark-icon: #ffffff;
 	}
@@ -183,68 +186,806 @@
 			--figma-color-text-warning-secondary: #f7d15f;
 			--figma-color-text-warning-tertiary: #f7d15f;
 		}
-
-		body {
-			color: var(--figma-color-text);
-		}
 	}
 
-	.dimensions {
-		display: flex;
-		flex-direction: column;
-		row-gap: 12px;
+	body {
+		background-color: #3c3c3c;
 	}
 
-	.dimension {
-		display: flex;
-		align-items: center;
-		gap: 4px;
-		user-select: none;
+	.show-dimensions {
+		/* outline: none; */
+		opacity: 1 !important;
+	}
 
-		input {
-			appearance: none;
-			inline-size: 14px;
-			block-size: 14px;
-			border-radius: 2px;
-			outline: 1px solid rgb(110, 110, 110);
-			background-color: var(--screenshot-color-bg);
-		}
+	.show-dimensions label {
+		opacity: 1;
+		transition-property: opacity;
+		transition-duration: 400ms;
+	}
 
-		input:checked {
-			background-color: var(--screenshot-color-bg-checked);
-		}
+	/* Shrink scrollbar width */
+	#dimensions-list::-webkit-scrollbar {
+		width: 0px; /* Adjust the width as needed */
+	}
 
-		.checkmark-icon {
-			position: absolute;
-			left: 13.5px;
-			opacity: 0;
-		}
+	#dimensions-list::-webkit-scrollbar-thumb {
+		background-color: darkgrey; /* Color of the scrollbar thumb */
+		border-radius: 10px; /* Rounded corners */
+	}
 
-		input:checked ~ .checkmark-icon {
-			position: absolute;
-			opacity: 1;
-			fill: var(--screenshot-color-bg-checkmark-icon);
-		}
+	#dimensions-list::-webkit-scrollbar-track {
+		background: lightgrey; /* Color of the scrollbar track */
 	}
 </style>
 
-<header>
-	<section class="topbar"></section>
-</header>
-<main>
-	<section class="dimensions"></section>
+<!-- --------------------------------------------------------------- -->
+
+<main class="h-full flex flex-col bg-[var(--figma-color-bg)]">
+	<header class="flex justify-center py-4 bg-[var(--figma-color-bg)]">
+		<!-- URL search component -->
+		<section class="bg-red-400" id="url-input">
+			<input
+				class="px-4 py-1 rounded-sm max-w-[500px] w-full"
+				type="text"
+				id="image-url"
+				placeholder="Enter image URL" />
+		</section>
+
+		<div class="pl-2 relative flex gap-3 text-center">
+			<!-- Dimensions selection component -->
+			<section class="relative flex flex-col">
+				<button
+					class="text-left hover:bg-gray-600 rounded-lg dimensionsBtn h-[32] w-[256] px-4 py-1 text-[var(--figma-color-text)]">
+					Dimensions:
+					<span>Pixel 7s</span>
+				</button>
+				<ul
+					id="dimensions-list"
+					class="bg-[var(--figma-color-bg)] top-12 absolute shadow-lg rounded-md opacity-0 transition-all p-2 max-h-[520px] gap-2 overflow-y-scroll flex flex-col flex-start"></ul>
+				<!-- #region ULMarkup -->
+				<!-- <ul
+					id="dimensions-list"
+					class="bg-[#28292A] top-12 absolute shadow-lg rounded-md opacity-0 transition-all p-2 max-h-[520px] gap-2 overflow-y-scroll flex flex-col flex-start">
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="mobile">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="mobile"
+								name="mobile"
+								value="mobile" />
+							Mobile
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="tablet">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="tablet"
+								name="tablet"
+								value="tablet" />
+							Tablet
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="desktop">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="desktop"
+								name="desktop"
+								value="desktop" />
+							Desktop
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="custom">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="custom"
+								name="custom"
+								value="custom" />
+							Custom
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="blackberry z30">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="blackberry z30"
+								name="blackberry z30"
+								value="blackberry z30" />
+							Blackberry Z30
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="blackberry playbook">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="blackberry playbook"
+								name="blackberry playbook"
+								value="blackberry playbook" />
+							Blackberry Playbook
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="galaxy note 3">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="galaxy note 3"
+								name="galaxy note 3"
+								value="galaxy note 3" />
+							Galaxy Note 3
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="galaxy note ll">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="galaxy note ll"
+								name="galaxy note ll"
+								value="galaxy note ll" />
+							Galaxy Note ll
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="galaxy s iii">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="galaxy s iii"
+								name="galaxy s iii"
+								value="galaxy s iii" />
+							Galaxy S III
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="galaxy 58">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="galaxy 58"
+								name="galaxy 58"
+								value="galaxy 58" />
+							Galaxy 58
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="galaxy s9">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="galaxy s9"
+								name="galaxy s9"
+								value="galaxy s9" />
+							Galaxy S9
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="galaxy tab s4">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="galaxy tab s4"
+								name="galaxy tab s4"
+								value="galaxy tab s4" />
+							Galaxy Tab S4
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="kindle fire hdx">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="kindle fire hdx"
+								name="kindle fire hdx"
+								value="kindle fire hdx" />
+							Kindle Fire HDX
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="lg optimus l70">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="lg optimus l70"
+								name="lg optimus l70"
+								value="lg optimus l70" />
+							Lg Optimus l70
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="microsoft lumia 550">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="microsoft lumia 550"
+								name="microsoft lumia 550"
+								value="microsoft lumia 550" />
+							Microsoft Lumia 550
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="microsoft lumia 950">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="microsoft lumia 950"
+								name="microsoft lumia 950"
+								value="microsoft lumia 950" />
+							Microsoft Lumia 950
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="motorola g power">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="motorola g power"
+								name="motorola g power"
+								value="motorola g power" />
+							Motorola G Power
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="motorola g4">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="motorola g4"
+								name="motorola g4"
+								value="motorola g4" />
+							Motorola G4
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="nexus 1o">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="nexus 1o"
+								name="nexus 1o"
+								value="nexus 1o" />
+							Nexus 10
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="nexus 4">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="nexus 4"
+								name="nexus 4"
+								value="nexus 4" />
+							Nexus 4
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="nexus 5">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="nexus 5"
+								name="nexus 5"
+								value="nexus 5" />
+							Nexus 5
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="nexus 5x">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="nexus 5x"
+								name="nexus 5x"
+								value="nexus 5x" />
+							Nexus 5x
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="nexus 6">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="nexus 6"
+								name="nexus 6"
+								value="nexus 6" />
+							Nexus 6
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="nexus 6p">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="nexus 6p"
+								name="nexus 6p"
+								value="nexus 6p" />
+							Nexus 6p
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="nexus 7">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="nexus 7"
+								name="nexus 7"
+								value="nexus 7" />
+							Nexus 7
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="nokia lumia 520">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="nokia lumia 520"
+								name="nokia lumia 520"
+								value="nokia lumia 520" />
+							Nokia Lumia 520
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="nokia n9">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="nokia n9"
+								name="nokia n9"
+								value="nokia n9" />
+							Nokia N9
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="pixel 3">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="pixel 3"
+								name="pixel 3"
+								value="pixel 3" />
+							Pixel 3
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="pixel 4">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="pixel 4"
+								name="pixel 4"
+								value="pixel 4" />
+							Pixel 4
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="jio phone 2">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="jio phone 2"
+								name="jio phone 2"
+								value="jio phone 2" />
+							Jio Phone 2
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="iphone se">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="iphone se"
+								name="iphone se"
+								value="iphone se" />
+							Iphone SE
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="iphone xr">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="iphone xr"
+								name="iphone xr"
+								value="iphone xr" />
+							Iphone XR
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="iphone 12 pro">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="iphone 12 pro"
+								name="iphone 12 pro"
+								value="iphone 12 pro" />
+							Iphone 12 Pro
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="iphone 14 pro max">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="iphone 14 pro max"
+								name="iphone 14 pro max"
+								value="iphone 14 pro max" />
+							Iphone 14 Pro Max
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="pixel 3 xl">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="pixel 3 xl"
+								name="pixel 3 xl"
+								value="pixel 3 xl" />
+							Pixel 3 XL
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="pixel 7">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="pixel 7"
+								name="pixel 7"
+								value="pixel 7" />
+							Pixel 7
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="samsung galaxy s8">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="samsung galaxy s8"
+								name="samsung galaxy s8"
+								value="samsung galaxy s8" />
+							Samsung Galaxy S8
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="samsung galaxy s20 ultra">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="samsung galaxy s20 ultra"
+								name="samsung galaxy s20 ultra"
+								value="samsung galaxy s20 ultra" />
+							Samsung Galaxy S20 Ultra
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="iphone 4">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="iphone 4"
+								name="iphone 4"
+								value="iphone 4" />
+							Iphone 4
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="iphone s/se">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="iphone s/se"
+								name="iphone s/se"
+								value="iphone s/se" />
+							Iphone S/SE
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="iphone 6/7/8">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="iphone 6/7/8"
+								name="iphone 6/7/8"
+								value="iphone 6/7/8" />
+							Iphone 6/7/8
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="iphone 6/7/8 plus">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="iphone 6/7/8 plus"
+								name="iphone 6/7/8 plus"
+								value="iphone 6/7/8 plus" />
+							Iphone 6/7/8 Plus
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="iphone x">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="iphone x"
+								name="iphone x"
+								value="iphone x" />
+							Iphone X
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="ipad">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="ipad"
+								name="ipad"
+								value="ipad" />
+							Ipad
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="ipad pro">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="ipad pro"
+								name="ipad pro"
+								value="ipad pro" />
+							Ipad Pro
+						</label>
+					</li>
+					<li>
+						<label
+							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
+							for="facebook on android">
+							<input
+								class="w-4 h-4 my-auto"
+								type="checkbox"
+								id="facebook on android"
+								name="facebook on android"
+								value="facebook on android" />
+							Facebook on Android
+						</label>
+					</li>
+				</ul> -->
+				<!-- #endregion ULMarkup-->
+			</section>
+
+			<!-- Dimensions width-x-height input component -->
+			<section>
+				<input
+					class="px-4 py-1 w-[60px]"
+					type="text"
+					id="dimension-width"
+					value="400" />
+				x
+				<input
+					class="px-4 py-1 w-[60px]"
+					type="text"
+					id="dimension-height"
+					value="800" />
+			</section>
+
+			<!-- Dimensions zoom input component -->
+			<section>
+				<input class="px-4 py-1 w-[60px]" type="text" value="100%" id="zoom" />
+			</section>
+
+			<!-- Dimensions options component -->
+			<section class="additional options">
+				<svg
+					width="24px"
+					height="24px"
+					viewBox="0 0 24 24"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg">
+					<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+					<g
+						id="SVGRepo_tracerCarrier"
+						stroke-linecap="round"
+						stroke-linejoin="round"></g>
+					<g id="SVGRepo_iconCarrier">
+						<path
+							class="stroke-[var(--figma-color-text)]"
+							d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
+						<path
+							class="stroke-[var(--figma-color-text)]"
+							d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
+						<path
+							class="stroke-[var(--figma-color-text)]"
+							d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
+					</g>
+				</svg>
+			</section>
+		</div>
+	</header>
+
+	<!-- Image component-->
+	<div
+		class="m-4 resize overflow-auto h-full rounded-lg bg-[var(--figma-color-bg)] border-8 border-[var(--figma-color-bg-theme)]"
+		id="image-frame">
+		<img class="outline-none" src="" id="image-content" class="h-full" />
+	</div>
 </main>
 
-<script>
-	/** FEATURE: Implement URL Screenshot UI
-	 *
-	 * - ability to edit dimensions
-	 * - URL to take a screenshot of
-	 * - options object with dimensions, viewport, etc.
+<script src="https://cdn.tailwindcss.com"></script>
 
-	 * TODO:
-	 * 	- need to store input:checked state
-	 */
+<script>
+	// elements
+	const imageUrl = document.getElementById("image-url");
+	const dimensionsBtn = document.querySelector(".dimensionsBtn");
+	const dimensionsEl = document.getElementById("dimensions-list");
+
+	//
+	// event listeners
+
+	imageUrl.addEventListener("input", async (event) => handleUrlInput(event));
+
+	dimensionsBtn.addEventListener("click", (event) =>
+		handleDimensionsBtnClick(event)
+	);
+
+	//
+	// handlers
+
+	function handleUrlInput(event) {
+		if (imageUrl.value.includes("https://google.com/")) {
+			const urlToScreenshot = imageUrl.value;
+			parent.postMessage(
+				{ pluginMessage: { type: "load-image", urlToScreenshot } },
+				"*"
+			);
+		}
+	}
+
+	function handleDimensionsBtnClick(event) {
+		dimensionsEl.classList.toggle("show-dimensions");
+		console.log({ dimensionsEl });
+	}
+
+	// <!-- --------------------URL Input for Image to screenshot----------------------- -->
+	// document.getElementById("load-image").onclick = () => {
+	// 	const url = document.getElementById("image-url").value;
+	// 	parent.postMessage({ pluginMessage: { type: "load-image", url } }, "*");
+	// };
+
+	// document.getElementById("image-url").addEventListener("input", (event) => {
+	// 	console.log(event);
+	// 	const url = document.getElementById("image-url").value;
+	// 	if (url.includes(".")) {
+	// 		parent.postMessage({ pluginMessage: { type: "load-image", url } }, "*");
+	// 	}
+	// });
+
+	// message listners for incoming server messages
+	onmessage = (event) => {
+		if (event.data.pluginMessage.type === "image") {
+			const blob = new Blob([event.data.pluginMessage.uint8Array], {
+				type: "image/png",
+			});
+			const imageUrl = URL.createObjectURL(blob);
+			const img = document.getElementById("image-content");
+			img.src = imageUrl;
+		}
+	};
+
+	// ------------------------------------------
+
+	/** FEATURE: Implement URL Screenshot UI
+			 *
+			 * - ability to edit dimensions
+			 * - URL to take a screenshot of
+			 * - options object with dimensions, viewport, etc.
+
+			 * TODO:
+			 * 	- need to store input:checked state
+			 */ // create createURLInput
 
 	const dimensions = [
 		"mobile",
@@ -303,32 +1044,21 @@
 	}
 
 	function createDimensions(dimensions) {
-		const dimensionsEl = document.querySelector(".dimensions");
-
+		const dimensionsEl = document.getElementById("dimensions-list");
 		dimensions.map((dimension) => {
-			const dimensionEl = document.createElement("label");
-			dimensionEl.classList.add("dimension");
-			dimensionEl.innerHTML = `
-				<input class="input" type="checkbox" id="${dimension}" name="${dimension}" value="${dimension}" />
-				${title(dimension)}
+			const dimensionEl = document.createElement("li");
+			dimensionEl.classList.add("group");
+			// dimensionEl.classList.add("w-full");
 
-				<svg
-					class="checkmark-icon"
-					height="11px"
-					width="11px"
-					version="1.1"
-					id="Capa_1"
-					xmlns="http://www.w3.org/2000/svg"
-					xmlns:xlink="http://www.w3.org/1999/xlink"
-					viewBox="0 0 32 32"
-					xml:space="preserve"
-					fill="#000000">
-					<g>
-						<polygon
-							points="11.941,28.877 0,16.935 5.695,11.24 11.941,17.486 26.305,3.123 32,8.818 "></polygon>
-					</g>
-				</svg>
-				`;
+			dimensionEl.innerHTML = `
+							<label class="hover:bg-[var(--figma-color-bg-theme)] w-full flex gap-[8px] rounded-lg p-2 px-4" for="${dimension}">
+								<input class="w-4 h-4 my-auto" type="checkbox" id="${dimension}" name="${dimension}" value="${dimension}" />
+								<span class="whitespace-nowrap group-hover:text-[var(--figma-color-text-theme)] text-[var(--figma-color-text)] rounded-lg p-2 px-4">${title(
+									dimension
+								)}</span>
+							</label>
+							`;
+
 			dimensionsEl.appendChild(dimensionEl);
 		});
 	}
