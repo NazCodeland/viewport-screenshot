@@ -2,7 +2,7 @@
 *.log
 *.log.*
 node_modules
-
+todo.ts
 out/
 dist/
 code.js

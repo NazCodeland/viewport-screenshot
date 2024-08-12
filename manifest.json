@@ -2,10 +2,10 @@
 	"name": "URL Screenshot",
 	"id": "1402824004081349351",
 	"api": "1.0.0",
-	"main": "./src/code.js",
+	"main": "./src/plugin.js",
+	"ui": "./src/ui.html",
+	"editorType": ["figma"],
 	"capabilities": [],
 	"enableProposedApi": false,
-	"documentAccess": "dynamic-page",
-	"editorType": ["figma"],
-	"ui": "./src/ui.html"
+	"documentAccess": "dynamic-page"
 }

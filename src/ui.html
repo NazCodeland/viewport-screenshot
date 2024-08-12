@@ -194,6 +194,7 @@
 
 	.show-dimensions {
 		/* outline: none; */
+		display: flex !important;
 		opacity: 1 !important;
 	}
 
@@ -218,654 +219,68 @@
 	}
 </style>
 
-<!-- --------------------------------------------------------------- -->
-
-<main class="h-full flex flex-col bg-[var(--figma-color-bg)]">
-	<header class="flex justify-center py-4 bg-[var(--figma-color-bg)]">
+<main class="app h-full flex flex-col bg-[var(--figma-color-bg)]">
+	<header class="flex flex-col justify-center py-4 gap-4">
 		<!-- URL search component -->
-		<section class="bg-red-400" id="url-input">
-			<input
-				class="px-4 py-1 rounded-sm max-w-[500px] w-full"
-				type="text"
-				id="image-url"
-				placeholder="Enter image URL" />
-		</section>
+		<input
+			class="px-4 py-1 rounded-sm max-w-[500px] w-full"
+			type="text"
+			id="screenshot-url-input"
+			placeholder="Enter image URL" />
 
-		<div class="pl-2 relative flex gap-3 text-center">
+		<!-- Other components -->
+		<div class="relative flex gap-3 text-center">
 			<!-- Dimensions selection component -->
-			<section class="relative flex flex-col">
-				<button
-					class="text-left hover:bg-gray-600 rounded-lg dimensionsBtn h-[32] w-[256] px-4 py-1 text-[var(--figma-color-text)]">
-					Dimensions:
-					<span>Pixel 7s</span>
-				</button>
-				<ul
-					id="dimensions-list"
-					class="bg-[var(--figma-color-bg)] top-12 absolute shadow-lg rounded-md opacity-0 transition-all p-2 max-h-[520px] gap-2 overflow-y-scroll flex flex-col flex-start"></ul>
-				<!-- #region ULMarkup -->
-				<!-- <ul
-					id="dimensions-list"
-					class="bg-[#28292A] top-12 absolute shadow-lg rounded-md opacity-0 transition-all p-2 max-h-[520px] gap-2 overflow-y-scroll flex flex-col flex-start">
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="mobile">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="mobile"
-								name="mobile"
-								value="mobile" />
-							Mobile
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="tablet">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="tablet"
-								name="tablet"
-								value="tablet" />
-							Tablet
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="desktop">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="desktop"
-								name="desktop"
-								value="desktop" />
-							Desktop
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="custom">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="custom"
-								name="custom"
-								value="custom" />
-							Custom
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="blackberry z30">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="blackberry z30"
-								name="blackberry z30"
-								value="blackberry z30" />
-							Blackberry Z30
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="blackberry playbook">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="blackberry playbook"
-								name="blackberry playbook"
-								value="blackberry playbook" />
-							Blackberry Playbook
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="galaxy note 3">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="galaxy note 3"
-								name="galaxy note 3"
-								value="galaxy note 3" />
-							Galaxy Note 3
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="galaxy note ll">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="galaxy note ll"
-								name="galaxy note ll"
-								value="galaxy note ll" />
-							Galaxy Note ll
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="galaxy s iii">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="galaxy s iii"
-								name="galaxy s iii"
-								value="galaxy s iii" />
-							Galaxy S III
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="galaxy 58">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="galaxy 58"
-								name="galaxy 58"
-								value="galaxy 58" />
-							Galaxy 58
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="galaxy s9">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="galaxy s9"
-								name="galaxy s9"
-								value="galaxy s9" />
-							Galaxy S9
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="galaxy tab s4">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="galaxy tab s4"
-								name="galaxy tab s4"
-								value="galaxy tab s4" />
-							Galaxy Tab S4
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="kindle fire hdx">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="kindle fire hdx"
-								name="kindle fire hdx"
-								value="kindle fire hdx" />
-							Kindle Fire HDX
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="lg optimus l70">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="lg optimus l70"
-								name="lg optimus l70"
-								value="lg optimus l70" />
-							Lg Optimus l70
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="microsoft lumia 550">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="microsoft lumia 550"
-								name="microsoft lumia 550"
-								value="microsoft lumia 550" />
-							Microsoft Lumia 550
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="microsoft lumia 950">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="microsoft lumia 950"
-								name="microsoft lumia 950"
-								value="microsoft lumia 950" />
-							Microsoft Lumia 950
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="motorola g power">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="motorola g power"
-								name="motorola g power"
-								value="motorola g power" />
-							Motorola G Power
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="motorola g4">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="motorola g4"
-								name="motorola g4"
-								value="motorola g4" />
-							Motorola G4
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="nexus 1o">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="nexus 1o"
-								name="nexus 1o"
-								value="nexus 1o" />
-							Nexus 10
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="nexus 4">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="nexus 4"
-								name="nexus 4"
-								value="nexus 4" />
-							Nexus 4
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="nexus 5">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="nexus 5"
-								name="nexus 5"
-								value="nexus 5" />
-							Nexus 5
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="nexus 5x">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="nexus 5x"
-								name="nexus 5x"
-								value="nexus 5x" />
-							Nexus 5x
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="nexus 6">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="nexus 6"
-								name="nexus 6"
-								value="nexus 6" />
-							Nexus 6
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="nexus 6p">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="nexus 6p"
-								name="nexus 6p"
-								value="nexus 6p" />
-							Nexus 6p
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="nexus 7">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="nexus 7"
-								name="nexus 7"
-								value="nexus 7" />
-							Nexus 7
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="nokia lumia 520">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="nokia lumia 520"
-								name="nokia lumia 520"
-								value="nokia lumia 520" />
-							Nokia Lumia 520
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="nokia n9">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="nokia n9"
-								name="nokia n9"
-								value="nokia n9" />
-							Nokia N9
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="pixel 3">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="pixel 3"
-								name="pixel 3"
-								value="pixel 3" />
-							Pixel 3
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="pixel 4">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="pixel 4"
-								name="pixel 4"
-								value="pixel 4" />
-							Pixel 4
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="jio phone 2">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="jio phone 2"
-								name="jio phone 2"
-								value="jio phone 2" />
-							Jio Phone 2
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="iphone se">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="iphone se"
-								name="iphone se"
-								value="iphone se" />
-							Iphone SE
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="iphone xr">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="iphone xr"
-								name="iphone xr"
-								value="iphone xr" />
-							Iphone XR
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="iphone 12 pro">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="iphone 12 pro"
-								name="iphone 12 pro"
-								value="iphone 12 pro" />
-							Iphone 12 Pro
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="iphone 14 pro max">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="iphone 14 pro max"
-								name="iphone 14 pro max"
-								value="iphone 14 pro max" />
-							Iphone 14 Pro Max
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="pixel 3 xl">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="pixel 3 xl"
-								name="pixel 3 xl"
-								value="pixel 3 xl" />
-							Pixel 3 XL
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="pixel 7">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="pixel 7"
-								name="pixel 7"
-								value="pixel 7" />
-							Pixel 7
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="samsung galaxy s8">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="samsung galaxy s8"
-								name="samsung galaxy s8"
-								value="samsung galaxy s8" />
-							Samsung Galaxy S8
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="samsung galaxy s20 ultra">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="samsung galaxy s20 ultra"
-								name="samsung galaxy s20 ultra"
-								value="samsung galaxy s20 ultra" />
-							Samsung Galaxy S20 Ultra
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="iphone 4">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="iphone 4"
-								name="iphone 4"
-								value="iphone 4" />
-							Iphone 4
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="iphone s/se">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="iphone s/se"
-								name="iphone s/se"
-								value="iphone s/se" />
-							Iphone S/SE
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="iphone 6/7/8">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="iphone 6/7/8"
-								name="iphone 6/7/8"
-								value="iphone 6/7/8" />
-							Iphone 6/7/8
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="iphone 6/7/8 plus">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="iphone 6/7/8 plus"
-								name="iphone 6/7/8 plus"
-								value="iphone 6/7/8 plus" />
-							Iphone 6/7/8 Plus
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="iphone x">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="iphone x"
-								name="iphone x"
-								value="iphone x" />
-							Iphone X
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="ipad">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="ipad"
-								name="ipad"
-								value="ipad" />
-							Ipad
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="ipad pro">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="ipad pro"
-								name="ipad pro"
-								value="ipad pro" />
-							Ipad Pro
-						</label>
-					</li>
-					<li>
-						<label
-							class="w-full flex gap-[8px] transition-all duration-5000 opacity-10 text-[var(--figma-color-text)] hover:bg-gray-700 rounded-lg p-2 px-4"
-							for="facebook on android">
-							<input
-								class="w-4 h-4 my-auto"
-								type="checkbox"
-								id="facebook on android"
-								name="facebook on android"
-								value="facebook on android" />
-							Facebook on Android
-						</label>
-					</li>
-				</ul> -->
-				<!-- #endregion ULMarkup-->
+			<section class="outline relative flex flex-col">
+				<div>
+					<button
+						type="button"
+						id="dimensions-btn"
+						class="whitespace-nowrap px-4 py-1 text-left rounded-lg h-[32] text-[var(--figma-color-text)]">
+						Dimensions:
+						<span id="selected-dimension">Pixel 7a</span>
+					</button>
+					<ul
+						id="dimensions-list"
+						class="bg-[var(--figma-color-bg)] top-12 absolute hidden rounded-md p-2 max-h-[520px] gap-2 overflow-y-scroll flex-col flex-start">
+						<!-- Dynamically created dimensions -->
+					</ul>
+				</div>
 			</section>
 
 			<!-- Dimensions width-x-height input component -->
-			<section>
+			<section class="flex gap-2">
 				<input
-					class="px-4 py-1 w-[60px]"
-					type="text"
+					class="w-[80px] px-2 py-1 text-center"
+					type="number"
 					id="dimension-width"
-					value="400" />
-				x
+					value="390" />
+				<span class="text-[var(--figma-color-text)] m-auto">
+					<svg
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M4.18836 4.38931L4.28179 4.28179C4.44434 4.11922 4.65982 4.02037 4.88908 4.00322C5.11833 3.98607 5.34613 4.05177 5.53104 4.18836L5.63856 4.28179L12 10.642L18.3614 4.28051C18.5241 4.11813 18.7397 4.01951 18.969 4.0026C19.1982 3.98569 19.4259 4.0516 19.6107 4.18836L19.7182 4.28179C19.8808 4.44434 19.9796 4.65982 19.9968 4.88908C20.0139 5.11833 19.9482 5.34613 19.8116 5.53104L19.7182 5.63856L13.358 12L19.7195 18.3614C19.8819 18.5241 19.9805 18.7397 19.9974 18.969C20.0143 19.1982 19.9484 19.4259 19.8116 19.6107L19.7182 19.7182C19.5557 19.8808 19.3402 19.9796 19.1109 19.9968C18.8817 20.0139 18.6539 19.9482 18.469 19.8116L18.3614 19.7182L12 13.358L5.63856 19.7195C5.47586 19.8819 5.26029 19.9805 5.03104 19.9974C4.80179 20.0143 4.57408 19.9484 4.38931 19.8116L4.28179 19.7182C4.11922 19.5557 4.02037 19.3402 4.00322 19.1109C3.98607 18.8817 4.05177 18.6539 4.18836 18.469L4.28179 18.3614L10.642 12L4.28051 5.63856C4.11813 5.47586 4.01951 5.26029 4.0026 5.03104C3.98569 4.80179 4.0516 4.57408 4.18836 4.38931Z"
+							class="fill-[var(--figma-color-text)]"></path>
+					</svg>
+				</span>
 				<input
-					class="px-4 py-1 w-[60px]"
-					type="text"
+					class="w-[80px] px-2 py-1 text-center"
+					type="number"
 					id="dimension-height"
-					value="800" />
+					value="844" />
 			</section>
 
 			<!-- Dimensions zoom input component -->
 			<section>
-				<input class="px-4 py-1 w-[60px]" type="text" value="100%" id="zoom" />
+				<input
+					class="text-center px-2 py-1 w-[80px]"
+					type="text"
+					value="100%"
+					id="zoom" />
 			</section>
 
 			<!-- Dimensions options component -->
@@ -907,161 +322,211 @@
 	</header>
 
 	<!-- Image component-->
-	<div
-		class="m-4 resize overflow-auto h-full rounded-lg bg-[var(--figma-color-bg)] border-8 border-[var(--figma-color-bg-theme)]"
-		id="image-frame">
+	<div class="resize overflow-auto h-full rounded-lg" id="image-frame">
 		<img class="outline-none" src="" id="image-content" class="h-full" />
 	</div>
 </main>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <script>
-	// elements
-	const imageUrl = document.getElementById("image-url");
-	const dimensionsBtn = document.querySelector(".dimensionsBtn");
-	const dimensionsEl = document.getElementById("dimensions-list");
+	// #region elements
+	const screenshotUrlInput = document.getElementById("screenshot-url-input");
+	const dimensionsBtn = document.getElementById("dimensions-btn");
+	let dimensionText = document.getElementById("selected-dimension");
+	const dimensionsList = document.getElementById("dimensions-list");
+	// prettier-ignore
+	const dimensionListItems = document.getElementsByClassName("dimensions-list-item");
+	const dimensionWidth = document.getElementById("dimension-width");
+	const dimensionHeight = document.getElementById("dimension-height");
+	const imageFrame = document.getElementById("image-frame");
 
-	//
-	// event listeners
+	// #endregion elements
 
-	imageUrl.addEventListener("input", async (event) => handleUrlInput(event));
-
-	dimensionsBtn.addEventListener("click", (event) =>
-		handleDimensionsBtnClick(event)
-	);
-
-	//
-	// handlers
-
-	function handleUrlInput(event) {
-		if (imageUrl.value.includes("https://google.com/")) {
-			const urlToScreenshot = imageUrl.value;
-			parent.postMessage(
-				{ pluginMessage: { type: "load-image", urlToScreenshot } },
-				"*"
-			);
-		}
-	}
-
-	function handleDimensionsBtnClick(event) {
-		dimensionsEl.classList.toggle("show-dimensions");
-		console.log({ dimensionsEl });
-	}
-
-	// <!-- --------------------URL Input for Image to screenshot----------------------- -->
-	// document.getElementById("load-image").onclick = () => {
-	// 	const url = document.getElementById("image-url").value;
-	// 	parent.postMessage({ pluginMessage: { type: "load-image", url } }, "*");
-	// };
-
-	// document.getElementById("image-url").addEventListener("input", (event) => {
-	// 	console.log(event);
-	// 	const url = document.getElementById("image-url").value;
-	// 	if (url.includes(".")) {
-	// 		parent.postMessage({ pluginMessage: { type: "load-image", url } }, "*");
-	// 	}
-	// });
-
+	// ------------------------------------------------------------------
+	// #region server events
 	// message listners for incoming server messages
 	onmessage = (event) => {
+		if (event.data.pluginMessage.type === "data-dimensions") {
+			renderDimensions(JSON.parse(event.data.pluginMessage.dimensions));
+		}
+
 		if (event.data.pluginMessage.type === "image") {
 			const blob = new Blob([event.data.pluginMessage.uint8Array], {
 				type: "image/png",
 			});
+
 			const imageUrl = URL.createObjectURL(blob);
 			const img = document.getElementById("image-content");
 			img.src = imageUrl;
 		}
 	};
 
-	// ------------------------------------------
+	// #endregion server events
 
-	/** FEATURE: Implement URL Screenshot UI
-			 *
-			 * - ability to edit dimensions
-			 * - URL to take a screenshot of
-			 * - options object with dimensions, viewport, etc.
+	// ------------------------------------------------------------------
 
-			 * TODO:
-			 * 	- need to store input:checked state
-			 */ // create createURLInput
+	// #region  dynamically rendered markup
+	function renderDimensions(dimensions) {
+		function editWords(words) {
+			const wordsArray = words.split(" ");
+			return wordsArray
+				.map((word) => {
+					switch (word) {
+						case "iphone":
+							return "iPhone";
+						case "se":
+							return "SE";
+						default:
+							return word.charAt(0).toUpperCase() + word.slice(1);
+					}
+				})
+				.join(" ");
+		}
 
-	const dimensions = [
-		"mobile",
-		"tablet",
-		"desktop",
-		"custom",
-		"blackberry z30",
-		"blackberry playbook",
-		"galaxy note 3",
-		"galaxy note ll",
-		"galaxy s iii",
-		"galaxy 58",
-		"galaxy s9",
-		"galaxy tab s4",
-		"kindle fire hdx",
-		"lg optimus l70",
-		"microsoft lumia 550",
-		"microsoft lumia 950",
-		"motorola g power",
-		"motorola g4",
-		"nexus 1o",
-		"nexus 4",
-		"nexus 5",
-		"nexus 5x",
-		"nexus 6",
-		"nexus 6p",
-		"nexus 7",
-		"nokia lumia 520",
-		"nokia n9",
-		"pixel 3",
-		"pixel 4",
-		"jio phone 2",
-		"iphone se",
-		"iphone xr",
-		"iphone 12 pro",
-		"iphone 14 pro max",
-		"pixel 3 xl",
-		"pixel 7",
-		"samsung galaxy s8",
-		"samsung galaxy s20 ultra",
-		"iphone 4",
-		"iphone s/se",
-		"iphone 6/7/8",
-		"iphone 6/7/8 plus",
-		"iphone x",
-		"ipad",
-		"ipad pro",
-		"facebook on android",
-	];
+		function createDimensions(dimensions) {
+			const dimensionsList = document.getElementById("dimensions-list");
+			dimensions.map((dimension) => {
+				const dimensionEl = document.createElement("li");
 
-	function title(words) {
-		const wordsArray = words.split(" ");
-		return wordsArray
-			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-			.join(" ");
+				// add styles
+				dimensionEl.classList.add("dimensions-list-item");
+				dimensionEl.classList.add("group");
+				dimensionEl.classList.add("hover:bg-[var(--figma-color-bg-theme)]");
+				dimensionEl.classList.add("rounded-lg");
+
+				// add markup
+				dimensionEl.innerHTML = `
+				<label class="w-full flex gap-[8px] p-2 px-4 cursor-pointer"
+					for="${dimension.deviceName.toLowerCase().split(" ").join("-")}">
+					<input
+						data-deviceName="${dimension.deviceName}"
+						data-dimension="${dimension.width},${dimension.height}"
+						class="w-4 h-4 my-auto"
+						type="checkbox"
+						id="${dimension.deviceName.toLowerCase().split(" ").join("-")}"
+						name="${dimension.deviceName.toLowerCase().split(" ").join("-")}"}"
+						value="${dimension.deviceName.toLowerCase().split(" ").join("-")}"}" />
+						<span
+							class="whitespace-nowrap group-hover:text-[var(--figma-color-text-theme)]
+							text-[var(--figma-color-text)] p-2 px-4">
+							${dimension.deviceName}
+					</span>
+				</label>
+				`;
+				dimensionsList.appendChild(dimensionEl);
+
+				// event listeners
+				dimensionEl.addEventListener("click", (event) => {
+					switch (event.target.tagName) {
+						case "SPAN":
+							return;
+						case "LABEL":
+							return;
+						default:
+							break;
+					}
+
+					dimensionWidth.value = event.target.dataset.dimension.split(",")[0];
+					dimensionHeight.value = event.target.dataset.dimension.split(",")[1];
+					dimensionText.innerText = event.target.dataset.devicename;
+				});
+			});
+		}
+
+		createDimensions(dimensions);
+	}
+	// #endregion  dynamically rendered markup
+
+	// ------------------------------------------------------------------
+
+	// #region event listeners
+	const resizeObserver = new ResizeObserver(handleImageFrameResize);
+	resizeObserver.observe(imageFrame);
+
+	screenshotUrlInput.addEventListener("input", async (event) =>
+		handleScreenshotUrlInput(event)
+	);
+
+	dimensionsBtn.addEventListener("click", (event) =>
+		handleDimensionsBtnClick(event)
+	);
+
+	dimensionWidth.addEventListener("input", (event) => {
+		handleDimensionWidthInput(event);
+	});
+	dimensionWidth.addEventListener("input", (event) => {
+		handleDimensionHeightInput(event);
+	});
+
+	// #endregion event listeners
+
+	// #region handlers
+	function handleScreenshotUrlInput(event) {
+		if (screenshotUrlInput.value.includes("https://google.com/")) {
+			const urlToScreenshot = screenshotUrlInput.value;
+			parent.postMessage(
+				{
+					pluginMessage: {
+						type: "load-image",
+						urlToScreenshot,
+					},
+				},
+				"*"
+			);
+		}
 	}
 
-	function createDimensions(dimensions) {
-		const dimensionsEl = document.getElementById("dimensions-list");
-		dimensions.map((dimension) => {
-			const dimensionEl = document.createElement("li");
-			dimensionEl.classList.add("group");
-			// dimensionEl.classList.add("w-full");
-
-			dimensionEl.innerHTML = `
-							<label class="hover:bg-[var(--figma-color-bg-theme)] w-full flex gap-[8px] rounded-lg p-2 px-4" for="${dimension}">
-								<input class="w-4 h-4 my-auto" type="checkbox" id="${dimension}" name="${dimension}" value="${dimension}" />
-								<span class="whitespace-nowrap group-hover:text-[var(--figma-color-text-theme)] text-[var(--figma-color-text)] rounded-lg p-2 px-4">${title(
-									dimension
-								)}</span>
-							</label>
-							`;
-
-			dimensionsEl.appendChild(dimensionEl);
-		});
+	function handleDimensionsBtnClick(event) {
+		dimensionsList.classList.toggle("show-dimensions");
 	}
 
-	createDimensions(dimensions);
+	function handleDimensionWidthInput(event) {
+		const MINIMUM_WIDTH = 400;
+		const inputValue = parseInt(event.target.value);
+		const width = inputValue > MINIMUM_WIDTH ? inputValue : MINIMUM_WIDTH;
+
+		if (inputValue > MINIMUM_WIDTH) {
+			parent.postMessage(
+				{
+					pluginMessage: {
+						type: "resize-app",
+						width,
+					},
+				},
+				"*"
+			);
+		}
+		if (inputValue <= MINIMUM_WIDTH && inputValue >= 320) {
+			imageFrame.width = width;
+		}
+	}
+
+	function handleDimensionHeightInput(event) {
+		const height = parseInt(event.target.value);
+		const heightWithMinimum = height > 400 ? height : 400;
+
+		imageFrame.style.width = height;
+		parent.postMessage(
+			{
+				pluginMessage: {
+					type: "resize-app",
+					heightWithMinimum,
+				},
+			},
+			"*"
+		);
+	}
+
+	function handleImageFrameResize(entry) {
+		// console.log(entry[0]["borderBoxSize"]);
+		// console.log(entry[0]["contentBoxSize"]);
+		// const contentRect = entry[0]["contentRect"];
+		// console.log(contentRect);
+		// console.log(entry[0]["devicePixelContentBoxSize"]);
+		// console.log(entry[0]["target"]);
+		// dimensionWidth.value = contentRect.width;
+		// dimensionHeight.value = contentRect.height;
+	}
+
+	// #endregion handlers
 </script>
