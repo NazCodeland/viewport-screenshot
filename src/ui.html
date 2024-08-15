@@ -5,6 +5,12 @@
 		--figma-color-text-theme: var(--figma-color-bg);
 		--screenshot-color-bg-checked: #1b6ef3;
 		--screenshot-color-bg-checkmark-icon: #ffffff;
+
+		--mobile: 375px;
+		--tablet: 768px;
+		--laptop: 1024px;
+		--desktop: 1440px;
+		--4k: 2160px;
 	}
 
 	@media (prefers-color-scheme: dark) {
@@ -188,10 +194,6 @@
 		}
 	}
 
-	body {
-		background-color: #3c3c3c;
-	}
-
 	.show-dimensions {
 		/* outline: none; */
 		display: flex !important;
@@ -204,57 +206,99 @@
 		transition-duration: 400ms;
 	}
 
-	/* Shrink scrollbar width */
-	#dimensions-list::-webkit-scrollbar {
-		width: 0px; /* Adjust the width as needed */
+	/* .glassy-background {
+		backdrop-filter: blur(10px);
+		background-color: rgba(255, 255, 255, 0.2);
+		border-radius: 10px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		padding: 20px;
+	} */
+
+	main {
+		/*
+		s = start
+		e = end
+
+		4k = 4k
+		d = desktop
+		l = laptop
+		t = tablet
+		m = mobile
+		*/
+		display: grid;
+		grid-template-columns:
+		/**/ [4k-s] 35rem [d-s] 90rem [l-s] 8rem [t-s] 14rem [m-s] 20rem [m-e] 14rem [t-e] 8rem [l-e] 90rem [d-e] 35rem [4k-e];
+		grid-template-rows: 100px 1fr;
 	}
 
-	#dimensions-list::-webkit-scrollbar-thumb {
-		background-color: darkgrey; /* Color of the scrollbar thumb */
-		border-radius: 10px; /* Rounded corners */
+	header {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		padding-top: 2rem;
+		flex-wrap: wrap;
+		margin-inline: auto;
+		inline-size: 100%;
+		grid-column-start: 1;
+		grid-column-end: -1;
+		grid-row: 1;
+		z-index: 10;
+	}
+	header:hover {
+		opacity: 1;
 	}
 
-	#dimensions-list::-webkit-scrollbar-track {
-		background: lightgrey; /* Color of the scrollbar track */
+	#image-frame {
+		grid-column-start: 1;
+		grid-column-end: -1;
+		grid-row: 1;
+	}
+
+	/* above tablet  */
+	@media (width <= 300px) {
+		main {
+			background-color: red !important;
+			overflow: hidden;
+		}
 	}
 </style>
 
-<main class="app h-full flex flex-col bg-[var(--figma-color-bg)]">
-	<header class="flex flex-col justify-center py-4 gap-4">
+<main class="m-4">
+	<header class="">
 		<!-- URL search component -->
 		<input
-			class="px-4 py-1 rounded-sm max-w-[500px] w-full"
+			class="basis-72 px-4 py-1 rounded-sm"
 			type="text"
 			id="screenshot-url-input"
 			placeholder="Enter image URL" />
 
-		<!-- Other components -->
-		<div class="relative flex gap-3 text-center">
-			<!-- Dimensions selection component -->
-			<section class="outline relative flex flex-col">
-				<div>
-					<button
-						type="button"
-						id="dimensions-btn"
-						class="whitespace-nowrap px-4 py-1 text-left rounded-lg h-[32] text-[var(--figma-color-text)]">
-						Dimensions:
-						<span id="selected-dimension">Pixel 7a</span>
-					</button>
-					<ul
-						id="dimensions-list"
-						class="bg-[var(--figma-color-bg)] top-12 absolute hidden rounded-md p-2 max-h-[520px] gap-2 overflow-y-scroll flex-col flex-start">
-						<!-- Dynamically created dimensions -->
-					</ul>
-				</div>
-			</section>
+		<!-- Dimensions selection component -->
+		<section class="border border-gray-400 basis-72 relative flex flex-col">
+			<button
+				class="whitespace-nowrap px-4 py-1 text-left rounded-lg h-[32] text-[var(--figma-color-text)]"
+				type="button"
+				id="dimensions-btn">
+				Dimensions:
+				<span id="selected-dimension">Pixel 7a</span>
+			</button>
+			<ul
+				id="dimensions-list"
+				class="bg-[var(--figma-color-bg)] top-12 absolute hidden rounded-md p-2 max-h-[520px] gap-2 overflow-y-scroll flex-col flex-start">
+				<!-- Dynamically created dimensions -->
+			</ul>
+		</section>
 
+		<!-- Other components -->
+		<div class="basis-72 flex justify-between">
 			<!-- Dimensions width-x-height input component -->
-			<section class="flex gap-2">
+			<section class="border border-gray-400 flex gap-2">
 				<input
 					class="w-[80px] px-2 py-1 text-center"
 					type="number"
 					id="dimension-width"
-					value="390" />
+					value="320"
+					min="320" />
 				<span class="text-[var(--figma-color-text)] m-auto">
 					<svg
 						width="16"
@@ -271,7 +315,7 @@
 					class="w-[80px] px-2 py-1 text-center"
 					type="number"
 					id="dimension-height"
-					value="844" />
+					value="568" />
 			</section>
 
 			<!-- Dimensions zoom input component -->
@@ -284,7 +328,7 @@
 			</section>
 
 			<!-- Dimensions options component -->
-			<section class="additional options">
+			<!-- <section class="additional options">
 				<svg
 					width="24px"
 					height="24px"
@@ -317,13 +361,15 @@
 							stroke-linejoin="round"></path>
 					</g>
 				</svg>
-			</section>
+			</section> -->
 		</div>
 	</header>
 
 	<!-- Image component-->
-	<div class="resize overflow-auto h-full rounded-lg" id="image-frame">
-		<img class="outline-none" src="" id="image-content" class="h-full" />
+	<div
+		class="rounded-lg bg-blue-100 w-[320px] h-[118px] resize overflow-auto"
+		id="image-frame">
+		<img class="outline-none" src="" id="image-content" />
 	</div>
 </main>
 
@@ -367,22 +413,6 @@
 
 	// #region  dynamically rendered markup
 	function renderDimensions(dimensions) {
-		function editWords(words) {
-			const wordsArray = words.split(" ");
-			return wordsArray
-				.map((word) => {
-					switch (word) {
-						case "iphone":
-							return "iPhone";
-						case "se":
-							return "SE";
-						default:
-							return word.charAt(0).toUpperCase() + word.slice(1);
-					}
-				})
-				.join(" ");
-		}
-
 		function createDimensions(dimensions) {
 			const dimensionsList = document.getElementById("dimensions-list");
 			dimensions.map((dimension) => {
@@ -396,23 +426,23 @@
 
 				// add markup
 				dimensionEl.innerHTML = `
-				<label class="w-full flex gap-[8px] p-2 px-4 cursor-pointer"
-					for="${dimension.deviceName.toLowerCase().split(" ").join("-")}">
-					<input
-						data-deviceName="${dimension.deviceName}"
-						data-dimension="${dimension.width},${dimension.height}"
-						class="w-4 h-4 my-auto"
-						type="checkbox"
-						id="${dimension.deviceName.toLowerCase().split(" ").join("-")}"
-						name="${dimension.deviceName.toLowerCase().split(" ").join("-")}"}"
-						value="${dimension.deviceName.toLowerCase().split(" ").join("-")}"}" />
-						<span
-							class="whitespace-nowrap group-hover:text-[var(--figma-color-text-theme)]
-							text-[var(--figma-color-text)] p-2 px-4">
-							${dimension.deviceName}
-					</span>
-				</label>
-				`;
+					<label class="w-full flex gap-[8px] p-2 px-4 cursor-pointer"
+						for="${dimension.deviceName.toLowerCase().split(" ").join("-")}">
+						<input
+							data-deviceName="${dimension.deviceName}"
+							data-dimension="${dimension.width},${dimension.height}"
+							class="w-4 h-4 my-auto"
+							type="checkbox"
+							id="${dimension.deviceName.toLowerCase().split(" ").join("-")}"
+							name="${dimension.deviceName.toLowerCase().split(" ").join("-")}"}"
+							value="${dimension.deviceName.toLowerCase().split(" ").join("-")}"}" />
+							<span
+								class="whitespace-nowrap group-hover:text-[var(--figma-color-text-theme)]
+								text-[var(--figma-color-text)] p-2 px-4">
+								${dimension.deviceName}
+						</span>
+					</label>
+					`;
 				dimensionsList.appendChild(dimensionEl);
 
 				// event listeners
@@ -426,9 +456,22 @@
 							break;
 					}
 
-					dimensionWidth.value = event.target.dataset.dimension.split(",")[0];
-					dimensionHeight.value = event.target.dataset.dimension.split(",")[1];
+					const width = parseInt(event.target.dataset.dimension.split(",")[0]);
+					const height = parseInt(event.target.dataset.dimension.split(",")[1]);
+
+					dimensionWidth.setAttribute("value", width);
+					dimensionHeight.setAttribute("value", height);
 					dimensionText.innerText = event.target.dataset.devicename;
+
+					parent.postMessage(
+						{
+							pluginMessage: {
+								type: "resize-app",
+								options: { width, height },
+							},
+						},
+						"*"
+					);
 				});
 			});
 		}
@@ -454,7 +497,7 @@
 	dimensionWidth.addEventListener("input", (event) => {
 		handleDimensionWidthInput(event);
 	});
-	dimensionWidth.addEventListener("input", (event) => {
+	dimensionHeight.addEventListener("input", (event) => {
 		handleDimensionHeightInput(event);
 	});
 
@@ -462,7 +505,7 @@
 
 	// #region handlers
 	function handleScreenshotUrlInput(event) {
-		if (screenshotUrlInput.value.includes("https://google.com/")) {
+		if (screenshotUrlInput.value.includes("https://nazcodeland.dev/")) {
 			const urlToScreenshot = screenshotUrlInput.value;
 			parent.postMessage(
 				{
@@ -481,51 +524,64 @@
 	}
 
 	function handleDimensionWidthInput(event) {
-		const MINIMUM_WIDTH = 400;
-		const inputValue = parseInt(event.target.value);
+		const MINIMUM_WIDTH = 320;
+		const inputElement = event.target;
+		const inputValue = parseInt(inputElement.value);
 		const width = inputValue > MINIMUM_WIDTH ? inputValue : MINIMUM_WIDTH;
-
+		const height = dimensionHeight.value;
 		if (inputValue > MINIMUM_WIDTH) {
 			parent.postMessage(
 				{
 					pluginMessage: {
 						type: "resize-app",
-						width,
+						options: { width, height },
 					},
 				},
 				"*"
 			);
+			// inputElement.setAttribute("value", width);
+			// imageFrame.width = MINIMUM_WIDTH;
 		}
-		if (inputValue <= MINIMUM_WIDTH && inputValue >= 320) {
-			imageFrame.width = width;
-		}
+		// if (inputValue <= MINIMUM_WIDTH && inputValue >= 320) {
+		// }
 	}
 
 	function handleDimensionHeightInput(event) {
-		const height = parseInt(event.target.value);
-		const heightWithMinimum = height > 400 ? height : 400;
+		const MINIMUM_HEIGHT = 568;
+		const inputElement = event.target;
+		const inputValue = parseInt(inputElement.value);
+		const height = inputValue > MINIMUM_HEIGHT ? inputValue : MINIMUM_HEIGHT;
+		const width = dimensionWidth.value;
+		if (inputValue > MINIMUM_HEIGHT) {
+			parent.postMessage(
+				{
+					pluginMessage: {
+						type: "resize-app",
+						options: { width, height },
+					},
+				},
+				"*"
+			);
+			inputElement.setAttribute("value", height);
+			imageFrame.height = MINIMUM_HEIGHT;
+		}
+	}
 
-		imageFrame.style.width = height;
+	function handleImageFrameResize(entry) {
+		const target = entry[0];
+		const borderBoxSize = target.borderBoxSize;
+		const width = parseInt(borderBoxSize[0].inlineSize) + 32;
+		const height = parseInt(borderBoxSize[0].blockSize) + 32;
+
 		parent.postMessage(
 			{
 				pluginMessage: {
 					type: "resize-app",
-					heightWithMinimum,
+					options: { width, height },
 				},
 			},
 			"*"
 		);
-	}
-
-	function handleImageFrameResize(entry) {
-		// console.log(entry[0]["borderBoxSize"]);
-		// console.log(entry[0]["contentBoxSize"]);
-		// const contentRect = entry[0]["contentRect"];
-		// console.log(contentRect);
-		// console.log(entry[0]["devicePixelContentBoxSize"]);
-		// console.log(entry[0]["target"]);
-		// dimensionWidth.value = contentRect.width;
-		// dimensionHeight.value = contentRect.height;
 	}
 
 	// #endregion handlers
