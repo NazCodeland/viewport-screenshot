@@ -243,34 +243,50 @@
 		grid-column-start: 1;
 		grid-column-end: -1;
 		grid-row: 1;
-		z-index: 10;
 	}
 	header:hover {
 		opacity: 1;
 	}
 
-	#image-frame {
+	.image-frame {
 		grid-column-start: 1;
 		grid-column-end: -1;
 		grid-row: 1;
 	}
 
-	/* above tablet  */
-	@media (width >= 768px) {
+	@media (height < 160px) {
+		.dimensions-container {
+			visibility: hidden;
+		}
+	}
+	@media (height < 200px) {
+		*:not(header) {
+			overflow: hidden;
+		}
+	}
+	@media (height < 220px) {
+		.other-components {
+			visibility: hidden;
+		}
+		.image-frame,
+		main {
+			height: 100%;
+		}
 	}
 </style>
 
-<main class="m-4">
-	<header class="">
+<main class="m-4 overflow-visible">
+	<header class="h-fit">
 		<!-- URL search component -->
 		<input
-			class="basis-72 px-4 py-1 rounded-sm"
+			class="z-10 basis-96 w-full px-4 py-1 rounded-sm"
 			type="text"
 			id="screenshot-url-input"
 			placeholder="Enter image URL" />
 
 		<!-- Dimensions selection component -->
-		<section class="border border-gray-400 basis-72 relative flex flex-col">
+		<section
+			class="dimensions-container border border-gray-400 basis-96 w-full relative flex flex-col">
 			<button
 				class="whitespace-nowrap px-4 py-1 text-left rounded-lg h-[32] text-[var(--figma-color-text)]"
 				type="button"
@@ -286,7 +302,7 @@
 		</section>
 
 		<!-- Other components -->
-		<div class="basis-72 flex justify-between">
+		<div class="z-10 other-components gone basis-96 w-full flex gap-8">
 			<!-- Dimensions width-x-height input component -->
 			<section class="border border-gray-400 flex gap-2">
 				<input
@@ -363,8 +379,8 @@
 
 	<!-- Image component-->
 	<div
-		class="bg-blue-100 min-w-[200px] min-h-[300px] resize overflow-auto"
-		id="image-frame">
+		class="image-frame bg-blue-50 w-[320px] min-w-[400px] h-[568px] min-h-[100px] resize overflow-auto"
+		id="imageFrame">
 		<img class="outline-none" src="" id="image-content" />
 	</div>
 </main>
@@ -380,7 +396,7 @@
 	const dimensionListItems = document.getElementsByClassName("dimensions-list-item");
 	const dimensionWidth = document.getElementById("dimension-width");
 	const dimensionHeight = document.getElementById("dimension-height");
-	const imageFrame = document.getElementById("image-frame");
+	const imageFrame = document.getElementById("imageFrame");
 
 	// #endregion elements
 
