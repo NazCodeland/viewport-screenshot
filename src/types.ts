@@ -1,4 +1,4 @@
-// 
+
 export interface Dimension {
   deviceType: string;
   deviceName: string;
@@ -10,6 +10,7 @@ export interface Dimension {
 
 export type Prettify<T> = {
   [K in keyof T]: T[K];
+<<<<<<< HEAD
 } & unknown;
 
 type Intersected = {
@@ -30,3 +31,7 @@ export type Intersected = Prettify<
     c: boolean;
   }
 >;
+=======
+};
+
+>>>>>>> dev
