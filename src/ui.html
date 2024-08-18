@@ -5,12 +5,6 @@
 		--figma-color-text-theme: var(--figma-color-bg);
 		--screenshot-color-bg-checked: #1b6ef3;
 		--screenshot-color-bg-checkmark-icon: #ffffff;
-
-		--mobile: 375px;
-		--tablet: 768px;
-		--laptop: 1024px;
-		--desktop: 1440px;
-		--4k: 2160px;
 	}
 
 	@media (prefers-color-scheme: dark) {
@@ -219,15 +213,14 @@
 		s = start
 		e = end
 
-		4k = 4k
-		d = desktop
-		l = laptop
-		t = tablet
 		m = mobile
+		t = tablet
+		l = laptop
+		d = desktop
+		4k = 4k
 		*/
-		display: grid;
 		grid-template-columns:
-		/**/ [4k-s] 35rem [d-s] 90rem [l-s] 8rem [t-s] 14rem [m-s] 20rem [m-e] 14rem [t-e] 8rem [l-e] 90rem [d-e] 35rem [4k-e];
+		/**/ [4k-s] 75rem [d-s] 13rem [l-s] 8rem [t-s] 14rem [m-s] 20rem [m-e] 14rem [t-e] 8rem [l-e] 13rem [d-e] 75rem [4k-e];
 		grid-template-rows: 100px 1fr;
 	}
 
@@ -240,10 +233,12 @@
 		flex-wrap: wrap;
 		margin-inline: auto;
 		inline-size: 100%;
+
 		grid-column-start: 1;
 		grid-column-end: -1;
 		grid-row: 1;
 	}
+
 	header:hover {
 		opacity: 1;
 	}
@@ -252,6 +247,7 @@
 		grid-column-start: 1;
 		grid-column-end: -1;
 		grid-row: 1;
+		block-size: 100%;
 	}
 
 	@media (height < 160px) {
@@ -259,27 +255,21 @@
 			visibility: hidden;
 		}
 	}
-	@media (height < 200px) {
+	@media (height < 220px) {
 		*:not(header) {
 			overflow: hidden;
 		}
-	}
-	@media (height < 220px) {
 		.other-components {
 			visibility: hidden;
-		}
-		.image-frame,
-		main {
-			height: 100%;
 		}
 	}
 </style>
 
-<main class="m-4 overflow-visible">
+<main class="overflow-visible grid h-full m-0">
 	<header class="h-fit">
 		<!-- URL search component -->
 		<input
-			class="z-10 basis-96 w-full px-4 py-1 rounded-sm"
+			class="outline outline-gray-200 z-10 basis-96 w-full px-4 py-1 rounded-sm"
 			type="text"
 			id="screenshot-url-input"
 			placeholder="Enter image URL" />
@@ -310,7 +300,8 @@
 					type="number"
 					id="dimension-width"
 					value="320"
-					min="320" />
+					min="320"
+					max="2160" />
 				<span class="text-[var(--figma-color-text)] m-auto">
 					<svg
 						width="16"
@@ -327,7 +318,9 @@
 					class="w-[80px] px-2 py-1 text-center"
 					type="number"
 					id="dimension-height"
-					value="568" />
+					value="568"
+					min="568"
+					max="" />
 			</section>
 
 			<!-- Dimensions zoom input component -->
@@ -377,17 +370,20 @@
 		</div>
 	</header>
 
-	<!-- Image component-->
-	<div
-		class="image-frame bg-blue-50 w-[320px] min-w-[400px] h-[568px] min-h-[100px] resize overflow-auto"
+	<!-- Image frame component-->
+	<ol
+		class="flex flex-wrap gap-4 rounded-lg image-frame outline outline-gray-200 min-w-[320px] w-[320px] h-[568px] min-h-[100px] resize overflow-hidden"
 		id="imageFrame">
-		<img class="outline-none" src="" id="image-content" />
-	</div>
+		<li class="resize rounded-sm inline-block">
+			<img class="w-full border" src="" id="image-content" />
+		</li>
+	</ol>
 </main>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 	// #region elements
+	const currentDimension = { width: 320, height: 568 };
 	const screenshotUrlInput = document.getElementById("screenshot-url-input");
 	const dimensionsBtn = document.getElementById("dimensions-btn");
 	let dimensionText = document.getElementById("selected-dimension");
@@ -398,6 +394,7 @@
 	const dimensionHeight = document.getElementById("dimension-height");
 	const imageFrame = document.getElementById("imageFrame");
 
+	// console.log("imageFrame.ariaSetSize", imageFrame.client);
 	// #endregion elements
 
 	// ------------------------------------------------------------------
@@ -426,7 +423,6 @@
 	// #region  dynamically rendered markup
 	function renderDimensions(dimensions) {
 		function createDimensions(dimensions) {
-			const dimensionsList = document.getElementById("dimensions-list");
 			dimensions.map((dimension) => {
 				const dimensionEl = document.createElement("li");
 
@@ -471,14 +467,18 @@
 					const width = parseInt(event.target.dataset.dimension.split(",")[0]);
 					const height = parseInt(event.target.dataset.dimension.split(",")[1]);
 
-					dimensionWidth.setAttribute("value", width);
-					dimensionHeight.setAttribute("value", height);
+					// dimensionWidth.setAttribute("value", currentDimension.width);
+					// dimensionHeight.setAttribute("value", currentDimensionheight);
+					// console.log("currentDimension", currentDimension);
+					// currentDimension.width = width;
+					// currentDimension.height = height;
+					// console.log("currentDimension", currentDimension);
 					dimensionText.innerText = event.target.dataset.devicename;
 
 					parent.postMessage(
 						{
 							pluginMessage: {
-								type: "resize-app",
+								type: "resize-figma-plugin",
 								options: { width, height },
 							},
 						},
@@ -515,15 +515,29 @@
 
 	// #endregion event listeners
 
+	function isValidUrl(url) {
+		if (!url.includes(".")) return false;
+
+		try {
+			new URL(url);
+			return true;
+		} catch (error) {
+			console.log(error);
+			return false;
+		}
+	}
+
 	// #region handlers
 	function handleScreenshotUrlInput(event) {
-		if (screenshotUrlInput.value.includes("https://nazcodeland.dev/")) {
-			const urlToScreenshot = screenshotUrlInput.value;
+		const urlToScreenshot = screenshotUrlInput.value;
+		const val = isValidUrl(urlToScreenshot);
+		if (val) {
+			console.log("val", val);
 			parent.postMessage(
 				{
 					pluginMessage: {
 						type: "load-image",
-						urlToScreenshot,
+						options: urlToScreenshot,
 					},
 				},
 				"*"
@@ -539,36 +553,40 @@
 		const MINIMUM_WIDTH = 320;
 		const inputElement = event.target;
 		const inputValue = parseInt(inputElement.value);
-		const width = inputValue > MINIMUM_WIDTH ? inputValue : MINIMUM_WIDTH;
-		const height = dimensionHeight.value;
+		let width = inputValue > MINIMUM_WIDTH ? inputValue : MINIMUM_WIDTH;
+		let height = parseInt(dimensionHeight.value);
+		// width = width + 32;
+		// height = height + 32;
 		if (inputValue > MINIMUM_WIDTH) {
 			parent.postMessage(
 				{
 					pluginMessage: {
-						type: "resize-app",
+						type: "resize-figma-plugin",
 						options: { width, height },
 					},
 				},
 				"*"
 			);
 			// inputElement.setAttribute("value", width);
-			// imageFrame.width = MINIMUM_WIDTH;
+			imageFrame.width = MINIMUM_WIDTH;
 		}
-		// if (inputValue <= MINIMUM_WIDTH && inputValue >= 320) {
-		// }
 	}
 
 	function handleDimensionHeightInput(event) {
 		const MINIMUM_HEIGHT = 568;
 		const inputElement = event.target;
 		const inputValue = parseInt(inputElement.value);
-		const height = inputValue > MINIMUM_HEIGHT ? inputValue : MINIMUM_HEIGHT;
-		const width = dimensionWidth.value;
+		let height = inputValue > MINIMUM_HEIGHT ? inputValue : MINIMUM_HEIGHT;
+		let width = parseInt(dimensionWidth.value);
+
+		// width = width + 32;
+		// height = height + 32;
+
 		if (inputValue > MINIMUM_HEIGHT) {
 			parent.postMessage(
 				{
 					pluginMessage: {
-						type: "resize-app",
+						type: "resize-figma-plugin",
 						options: { width, height },
 					},
 				},
@@ -582,13 +600,16 @@
 	function handleImageFrameResize(entry) {
 		const target = entry[0];
 		const borderBoxSize = target.borderBoxSize;
-		const width = parseInt(borderBoxSize[0].inlineSize) + 32;
-		const height = parseInt(borderBoxSize[0].blockSize) + 32;
+		let width = parseInt(borderBoxSize[0].inlineSize);
+		let height = parseInt(borderBoxSize[0].blockSize);
+
+		dimensionHeight.setAttribute("value", height);
+		dimensionWidth.setAttribute("value", width);
 
 		parent.postMessage(
 			{
 				pluginMessage: {
-					type: "resize-app",
+					type: "resize-figma-plugin",
 					options: { width, height },
 				},
 			},

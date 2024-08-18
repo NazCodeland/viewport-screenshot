@@ -64,15 +64,13 @@ async function setupPlugin() {
 
 
 if (figma.editorType === 'figma') {
-  figma.showUI(__html__, { themeColors: true, width: 320 + 32, height: 568 + 32, title: "URL Screenshot" });
+  figma.showUI(__html__, { themeColors: true, width: 320, height: 568, title: "URL Screenshot" });
   setupPlugin();
 
-
   figma.ui.onmessage = (msg) => {
-
     if (msg.type === 'load-image') {
       const madeURL = encodeURIComponent(msg.urlToScreenshot);
-      fetch(`http://localhost:3000/mobile?url=${madeURL}`)
+      fetch(`http://localhost:3000/?url=${madeURL}`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -110,9 +108,11 @@ if (figma.editorType === 'figma') {
         });
     }
 
-    if (msg.type === 'resize-app') {
-      console.log("resize-app", msg.options);
-      figma.ui.resize(JSON.parse(msg.options.width), JSON.parse(msg.options.height));
+    if (msg.type === 'resize-figma-plugin') {
+      let { width, height } = msg.options;
+      width = width + 32;
+      height = height + 32;
+      figma.ui.resize(width, height);
     }
   };
 }

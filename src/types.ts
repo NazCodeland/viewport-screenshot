@@ -1,4 +1,4 @@
-// 
+
 export interface Dimension {
   deviceType: string;
   deviceName: string;
@@ -10,4 +10,5 @@ export interface Dimension {
 
 export type Prettify<T> = {
   [K in keyof T]: T[K];
-} & unknown;
+};
+
