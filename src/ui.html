@@ -194,202 +194,194 @@
 		}
 	}
 
-	.show-dimensions {
-		/* outline: none; */
-		display: flex !important;
-		opacity: 1 !important;
-	}
-
-	.show-dimensions label {
-		opacity: 1;
-		transition-property: opacity;
-		transition-duration: 400ms;
-	}
-
-	/* .glassy-background {
-		backdrop-filter: blur(10px);
-		background-color: rgba(255, 255, 255, 0.2);
-		border-radius: 10px;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		padding: 20px;
-	} */
-
 	main {
-		/*
-		s = start
-		e = end
-
-		m = mobile
-		t = tablet
-		l = laptop
-		d = desktop
-		4k = 4k
-		*/
-		grid-template-columns:
-		/**/ [4k-s] 75rem [d-s] 13rem [l-s] 8rem [t-s] 14rem [m-s] 20rem [m-e] 14rem [t-e] 8rem [l-e] 13rem [d-e] 75rem [4k-e];
-		grid-template-rows: 100px 1fr;
-	}
-
-	header {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 1rem;
-		padding-top: 2rem;
-		flex-wrap: wrap;
-		margin-inline: auto;
-		inline-size: 100%;
-
-		grid-column-start: 1;
-		grid-column-end: -1;
-		grid-row: 1;
-	}
-
-	header:hover {
-		opacity: 1;
-	}
-
-	.image-frame {
-		grid-column-start: 1;
-		grid-column-end: -1;
-		grid-row: 1;
-		block-size: 100%;
-	}
-
-	@media (height < 160px) {
-		.dimensions-container {
-			visibility: hidden;
-		}
-	}
-	@media (height < 220px) {
-		*:not(header) {
-			overflow: hidden;
-		}
-		.other-components {
-			visibility: hidden;
-		}
+		font-family: inter;
 	}
 </style>
 
-<main class="overflow-visible grid h-full m-0">
-	<header class="h-fit">
-		<!-- URL search component -->
-		<input
-			class="outline outline-gray-200 z-10 basis-96 w-full px-4 py-1 rounded-sm"
-			type="text"
-			id="screenshot-url-input"
-			placeholder="Enter image URL" />
+<!-- https://www.youtube.com/watch?v=1TSLEzNzGQM&t=154s
+https://www.youtube.com/watch?v=gieEQFIfgYc -->
+<!-- <header class="h-fit">
+	<section
+		class="dimensions-container border border-gray-400 basis-96 w-full relative flex flex-col">
+		<ul
+			id="dimensions-list"
+			class="bg-[var(--figma-color-bg)] top-12 absolute hidden rounded-md p-2 max-h-[520px] gap-2 overflow-y-scroll flex-col flex-start">
+		</ul>
+	</section>
+</header> -->
 
-		<!-- Dimensions selection component -->
-		<section
-			class="dimensions-container border border-gray-400 basis-96 w-full relative flex flex-col">
-			<button
-				class="whitespace-nowrap px-4 py-1 text-left rounded-lg h-[32] text-[var(--figma-color-text)]"
-				type="button"
-				id="dimensions-btn">
-				Dimensions:
-				<span id="selected-dimension">Pixel 7a</span>
-			</button>
-			<ul
-				id="dimensions-list"
-				class="bg-[var(--figma-color-bg)] top-12 absolute hidden rounded-md p-2 max-h-[520px] gap-2 overflow-y-scroll flex-col flex-start">
-				<!-- Dynamically created dimensions -->
+<main class="grid gap-4 select-none">
+	<input
+		class="z-10 basis-96 w-full outline-slate-200 outline px-4 py-1 rounded-sm"
+		type="text"
+		id="screenshot-url-input"
+		placeholder="Enter image URL" />
+
+	<section class="grid gap-4">
+		<h2 class="text-sm">Frame</h2>
+
+		<nav>
+			<ul class="flex flex-col gap-4 text-[12px] opacity-80">
+				<li class="group flex items-center gap-2">
+					<details class="w-full">
+						<summary class="px-1 flex items-center gap-1">
+							<svg
+								class="fill-gray-400 group-hover:fill-black"
+								xmlns="http://www.w3.org/2000/svg"
+								width="1rem"
+								height="1rem"
+								viewBox="0 0 20 20">
+								<path d="m8 6l6 4.03L8 14z" />
+							</svg>
+							Phone
+						</summary>
+						<ul class="flex flex-col pt-2">
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label
+									class="w-full gap-1 flex py-2 hover:bg-blue-050"
+									for="iphone-14-15-pro-max">
+									<input
+										type="checkbox"
+										id="iphone-14-15-pro-max"
+										name="iphone-14-15-pro-max" />
+									<span class="w-full">iPhone 14 & 15 Pro Max</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap">
+										430&hairsp;x&hairsp;932
+									</span>
+								</label>
+							</li>
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label class="gap-1 flex w-full py-2" for="iphone-14-15-pro">
+									<input
+										type="checkbox"
+										id="iphone-14-15-pro"
+										name="iphone-14-15-pro" />
+									<span class="w-full">iPhone 14 & 15 Pro</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap">
+										393&hairsp;x&hairsp;852</span
+									>
+								</label>
+							</li>
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label
+									class="w-full gap-1 flex py-2 hover:bg-blue-050"
+									for="iphone-13-14">
+									<input
+										type="checkbox"
+										id="iphone-13-14"
+										name="iphone-13-14" />
+									<span class="w-full">iPhone 13 & 14</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap"
+										>390&hairsp;x&hairsp;844</span
+									>
+								</label>
+							</li>
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label
+									class="w-full gap-1 flex py-2 hover:bg-blue-050"
+									for="iphone-14-plus">
+									<input
+										type="checkbox"
+										id="iphone-14-plus"
+										name="iphone-14-plus" />
+									<span class="w-full">iPhone 14 Plus</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap"
+										>428&hairsp;x&hairsp;926</span
+									>
+								</label>
+							</li>
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label
+									class="w-full gap-1 flex py-2 hover:bg-blue-050"
+									for="iphone-13-mini">
+									<input
+										type="checkbox"
+										id="iphone-13-mini"
+										name="iphone-13-mini" />
+									<span class="w-full">iPhone 13 mini</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap"
+										>375&hairsp;x&hairsp;812</span
+									>
+								</label>
+							</li>
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label
+									class="w-full gap-1 flex py-2 hover:bg-blue-050"
+									for="iphone-se">
+									<input type="checkbox" id="iphone-se" name="iphone-se" />
+									<span class="w-full">iPhone SE</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap"
+										>320&hairsp;x&hairsp;568</span
+									>
+								</label>
+							</li>
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label
+									class="w-full gap-1 flex py-2 hover:bg-blue-050"
+									for="iphone-8-plus">
+									<input
+										type="checkbox"
+										id="iphone-8-plus"
+										name="iphone-8-plus" />
+									<span class="w-full">iPhone 8 plus</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap"
+										>414&hairsp;x&hairsp;736</span
+									>
+								</label>
+							</li>
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label
+									class="w-full gap-1 flex py-2 hover:bg-blue-050"
+									for="iphone-8">
+									<input type="checkbox" id="iphone-8" name="iphone-8" />
+									<span class="w-full">iPhone 8</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap"
+										>375&hairsp;x&hairsp;667</span
+									>
+								</label>
+							</li>
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label
+									class="w-full gap-1 flex py-2 hover:bg-blue-050"
+									for="android-small">
+									<input
+										type="checkbox"
+										id="android-small"
+										name="android-small" />
+									<span class="w-full">Android Small</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap"
+										>360&hairsp;x&hairsp;640</span
+									>
+								</label>
+							</li>
+							<li class="flex justify-between px-4 hover:bg-[#F5F5F5]">
+								<label
+									class="w-full gap-1 flex py-2 hover:bg-blue-050"
+									for="android-large">
+									<input
+										type="checkbox"
+										id="android-large"
+										name="android-large" />
+									<span class="w-full">Android Large</span>
+									<span class="text-gray-400 text-[10.4px] whitespace-nowrap"
+										>360&hairsp;x&hairsp;800</span
+									>
+								</label>
+							</li>
+						</ul>
+					</details>
+				</li>
 			</ul>
-		</section>
-
-		<!-- Other components -->
-		<div class="z-10 other-components gone basis-96 w-full flex gap-8">
-			<!-- Dimensions width-x-height input component -->
-			<section class="border border-gray-400 flex gap-2">
-				<input
-					class="w-[80px] px-2 py-1 text-center"
-					type="number"
-					id="dimension-width"
-					value="320"
-					min="320"
-					max="2160" />
-				<span class="text-[var(--figma-color-text)] m-auto">
-					<svg
-						width="16"
-						height="16"
-						viewBox="0 0 24 24"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M4.18836 4.38931L4.28179 4.28179C4.44434 4.11922 4.65982 4.02037 4.88908 4.00322C5.11833 3.98607 5.34613 4.05177 5.53104 4.18836L5.63856 4.28179L12 10.642L18.3614 4.28051C18.5241 4.11813 18.7397 4.01951 18.969 4.0026C19.1982 3.98569 19.4259 4.0516 19.6107 4.18836L19.7182 4.28179C19.8808 4.44434 19.9796 4.65982 19.9968 4.88908C20.0139 5.11833 19.9482 5.34613 19.8116 5.53104L19.7182 5.63856L13.358 12L19.7195 18.3614C19.8819 18.5241 19.9805 18.7397 19.9974 18.969C20.0143 19.1982 19.9484 19.4259 19.8116 19.6107L19.7182 19.7182C19.5557 19.8808 19.3402 19.9796 19.1109 19.9968C18.8817 20.0139 18.6539 19.9482 18.469 19.8116L18.3614 19.7182L12 13.358L5.63856 19.7195C5.47586 19.8819 5.26029 19.9805 5.03104 19.9974C4.80179 20.0143 4.57408 19.9484 4.38931 19.8116L4.28179 19.7182C4.11922 19.5557 4.02037 19.3402 4.00322 19.1109C3.98607 18.8817 4.05177 18.6539 4.18836 18.469L4.28179 18.3614L10.642 12L4.28051 5.63856C4.11813 5.47586 4.01951 5.26029 4.0026 5.03104C3.98569 4.80179 4.0516 4.57408 4.18836 4.38931Z"
-							class="fill-[var(--figma-color-text)]"></path>
-					</svg>
-				</span>
-				<input
-					class="w-[80px] px-2 py-1 text-center"
-					type="number"
-					id="dimension-height"
-					value="568"
-					min="568"
-					max="" />
-			</section>
-
-			<!-- Dimensions zoom input component -->
-			<section>
-				<input
-					class="text-center px-2 py-1 w-[80px]"
-					type="text"
-					value="100%"
-					id="zoom" />
-			</section>
-
-			<!-- Dimensions options component -->
-			<!-- <section class="additional options">
-				<svg
-					width="24px"
-					height="24px"
-					viewBox="0 0 24 24"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg">
-					<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-					<g
-						id="SVGRepo_tracerCarrier"
-						stroke-linecap="round"
-						stroke-linejoin="round"></g>
-					<g id="SVGRepo_iconCarrier">
-						<path
-							class="stroke-[var(--figma-color-text)]"
-							d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
-						<path
-							class="stroke-[var(--figma-color-text)]"
-							d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
-						<path
-							class="stroke-[var(--figma-color-text)]"
-							d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
-					</g>
-				</svg>
-			</section> -->
-		</div>
-	</header>
-
-	<!-- Image frame component-->
-	<ol
-		class="flex flex-wrap gap-4 rounded-lg image-frame outline outline-gray-200 min-w-[320px] w-[320px] h-[568px] min-h-[100px] resize overflow-hidden"
-		id="imageFrame">
-		<li class="resize rounded-sm inline-block">
-			<img class="w-full border" src="" id="image-content" />
-		</li>
-	</ol>
+		</nav>
+	</section>
 </main>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 	// #region elements
-	const currentDimension = { width: 320, height: 568 };
+
+	console.log("rightPanel", rightPanel);
 	const screenshotUrlInput = document.getElementById("screenshot-url-input");
 	const dimensionsBtn = document.getElementById("dimensions-btn");
 	let dimensionText = document.getElementById("selected-dimension");
@@ -528,7 +520,6 @@
 			new URL(url);
 			return true;
 		} catch (error) {
-			console.log(error);
 			return false;
 		}
 	}

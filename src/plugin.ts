@@ -64,7 +64,8 @@ async function setupPlugin() {
 
 
 if (figma.editorType === 'figma') {
-  figma.showUI(__html__, { themeColors: true, width: 320 + 32, height: 568 + 32, title: "URL Screenshot" });
+  // figma.showUI(__html__, { themeColors: true, width: 244, height: 1124, title: "URL Screenshot" });
+  figma.showUI(__html__, { themeColors: true, width: 244 + 8, height: 1124, title: "URL Screenshot" });
   setupPlugin();
 
   figma.ui.onmessage = (msg) => {
