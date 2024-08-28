@@ -1,11 +1,8 @@
-
-
-
 async function getValue(key: string) {
   try {
     return await figma.clientStorage.getAsync(key);
   } catch (error) {
-    console.log('unable to get from storage', error);
+    console.log("unable to get from storage", error);
     return undefined;
   }
 }
@@ -13,14 +10,14 @@ async function setValue(key: string, value: string): Promise<void> {
   try {
     await figma.clientStorage.setAsync(key, value);
   } catch (error) {
-    console.log('unable to save to storage', error);
+    console.log("unable to save to storage", error);
   }
 }
 async function deleteValue(key: string): Promise<void> {
   try {
     await figma.clientStorage.deleteAsync(key);
   } catch (error) {
-    console.log('unable to remove from storage', error);
+    console.log("unable to remove from storage", error);
   }
 }
 async function getEntries() {
@@ -31,7 +28,7 @@ async function getEntries() {
       return `${key}: ${value}`;
     }
   } catch (error) {
-    console.log('unable to get keys', error);
+    console.log("unable to get keys", error);
   }
 }
 
@@ -41,4 +38,3 @@ export default {
   deleteValue,
   getEntries,
 };
-

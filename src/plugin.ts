@@ -1,5 +1,5 @@
-import clientStorage from './plugin/clientStorage';
-import { Dimension } from './types.js';
+import clientStorage from "./clientStorage";
+import { Dimension } from "./types.js";
 
 // application loads
 // 1. check for dimensions data:
@@ -13,44 +13,44 @@ async function setupPlugin() {
       deviceName: "Pixel 8 Pro",
       width: 448,
       height: 998,
-      zoom: 100
+      zoom: 100,
     },
     {
       deviceType: "mobile",
       deviceName: "Pixel 7A",
       width: 412,
       height: 915,
-      zoom: 100
+      zoom: 100,
     },
     {
       deviceType: "mobile",
       deviceName: "iPhone 15 Pro Max",
       width: 430,
       height: 932,
-      zoom: 100
+      zoom: 100,
     },
     {
       deviceType: "mobile",
       deviceName: "iPhone SE",
       width: 320,
       height: 568,
-      zoom: 100
+      zoom: 100,
     },
     {
       deviceType: "laptop",
       deviceName: "MacBook Air 13-inch M3",
       width: 1440,
       height: 900,
-      zoom: 100
-    }
+      zoom: 100,
+    },
   ];
 
   async function setDimensions(dimensions: Dimension[]) {
-    await clientStorage.setValue('dimensions', JSON.stringify(dimensions));
+    await clientStorage.setValue("dimensions", JSON.stringify(dimensions));
   }
 
   async function getDimensions() {
-    const storedDimensions = await clientStorage.getValue('dimensions');
+    const storedDimensions = await clientStorage.getValue("dimensions");
     if (storedDimensions) {
       return storedDimensions;
     }
@@ -59,26 +59,30 @@ async function setupPlugin() {
   }
 
   const dimensions = await getDimensions();
-  figma.ui.postMessage({ type: 'data-dimensions', dimensions });
+  figma.ui.postMessage({ type: "data-dimensions", dimensions });
 }
 
-
-if (figma.editorType === 'figma') {
+if (figma.editorType === "figma") {
   // figma.showUI(__html__, { themeColors: true, width: 244, height: 1124, title: "URL Screenshot" });
-  figma.showUI(__html__, { themeColors: true, width: 244 + 8, height: 1124, title: "URL Screenshot" });
+  figma.showUI(__html__, {
+    themeColors: true,
+    width: 244 + 8,
+    height: 1124,
+    title: "URL Screenshot",
+  });
   setupPlugin();
 
   figma.ui.onmessage = (msg) => {
-    if (msg.type === 'load-image') {
+    if (msg.type === "load-image") {
       const madeURL = encodeURIComponent(msg.urlToScreenshot);
       fetch(`http://localhost:3000/?url=${madeURL}`)
-        .then(response => {
+        .then((response) => {
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error("Network response was not ok");
           }
           return response.arrayBuffer();
         })
-        .then(async buffer => {
+        .then(async (buffer) => {
           const uint8Array = new Uint8Array(buffer);
 
           // // Create an image in Figma using the Uint8Array
@@ -101,15 +105,15 @@ if (figma.editorType === 'figma') {
           // ];
 
           // Post message to Figma UI
-          figma.ui.postMessage({ type: 'image', uint8Array });
+          figma.ui.postMessage({ type: "image", uint8Array });
         })
-        .catch(error => {
-          console.error('Error fetching image:', error);
-          figma.notify('Failed to load image. Please check the URL.');
+        .catch((error) => {
+          console.error("Error fetching image:", error);
+          figma.notify("Failed to load image. Please check the URL.");
         });
     }
 
-    if (msg.type === 'resize-figma-plugin') {
+    if (msg.type === "resize-figma-plugin") {
       let { width, height } = msg.options;
       width = width + 32;
       height = height + 32;
