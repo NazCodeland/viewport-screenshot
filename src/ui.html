@@ -1,445 +1,725 @@
 <!-- --------------------------------------------------------------- -->
 <style>
-	:root {
-		--figma-color-bg-theme: var(--figma-color-text);
-		--figma-color-text-theme: var(--figma-color-bg);
-		--screenshot-color-bg-checked: #1b6ef3;
-		--screenshot-color-bg-checkmark-icon: #ffffff;
+  :root {
+    --figma-color-bg-theme: var(--figma-color-text);
+    --figma-color-text-theme: var(--figma-color-bg);
+    --screenshot-color-bg-checked: #1b6ef3;
+    --screenshot-color-bg-checkmark-icon: #ffffff;
 
-		--mobile: 375px;
-		--tablet: 768px;
-		--laptop: 1024px;
-		--desktop: 1440px;
-		--4k: 2160px;
-	}
+    --mobile: 375px;
+    --tablet: 768px;
+    --laptop: 1024px;
+    --desktop: 1440px;
+    --4k: 2160px;
+  }
 
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--screenshot-color-bg: #3b3b3b;
-			--screenshot-color-bg-checked: #7cacf8;
-			--screenshot-color-bg-checkmark-icon: #282828;
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --screenshot-color-bg: #3b3b3b;
+      --screenshot-color-bg-checked: #7cacf8;
+      --screenshot-color-bg-checkmark-icon: #282828;
 
-			--figma-color-bg: #2c2c2c;
-			--figma-color-bg-brand: #0c8ce9;
-			--figma-color-bg-brand-hover: #0a6dc2;
-			--figma-color-bg-brand-pressed: #0a6dc2;
-			--figma-color-bg-brand-secondary: #105cad;
-			--figma-color-bg-brand-tertiary: #394360;
-			--figma-color-bg-component: #8a38f5;
-			--figma-color-bg-component-hover: #7a2ed6;
-			--figma-color-bg-component-pressed: #7a2ed6;
-			--figma-color-bg-component-secondary: #652ca8;
-			--figma-color-bg-component-tertiary: #473956;
-			--figma-color-bg-danger: #e03e1a;
-			--figma-color-bg-danger-hover: #c4381c;
-			--figma-color-bg-danger-pressed: #c4381c;
-			--figma-color-bg-danger-secondary: #963323;
-			--figma-color-bg-danger-tertiary: #7c2622;
-			--figma-color-bg-disabled: #757575;
-			--figma-color-bg-disabled-secondary: #b3b3b3;
-			--figma-color-bg-hover: #383838;
-			--figma-color-bg-inverse: #ffffff;
-			--figma-color-bg-onselected: #667799;
-			--figma-color-bg-onselected-hover: #667799;
-			--figma-color-bg-onselected-pressed: #667799;
-			--figma-color-bg-pressed: #383838;
-			--figma-color-bg-secondary: #383838;
-			--figma-color-bg-selected: #4a5878;
-			--figma-color-bg-selected-hover: #536383;
-			--figma-color-bg-selected-pressed: #536383;
-			--figma-color-bg-selected-secondary: #394360;
-			--figma-color-bg-selected-strong: #0c8ce9;
-			--figma-color-bg-selected-tertiary: #394360;
-			--figma-color-bg-success: #198f51;
-			--figma-color-bg-success-hover: #078348;
-			--figma-color-bg-success-pressed: #078348;
-			--figma-color-bg-success-secondary: #0a5c35;
-			--figma-color-bg-success-tertiary: #0a4c2d;
-			--figma-color-bg-tertiary: #444444;
-			--figma-color-bg-warning: #f3c11b;
-			--figma-color-bg-warning-hover: #f2b50d;
-			--figma-color-bg-warning-pressed: #f2b50d;
-			--figma-color-bg-warning-secondary: #e4a711;
-			--figma-color-bg-warning-tertiary: #c58011;
-			--figma-color-border: #444444;
-			--figma-color-border-brand: #105cad;
-			--figma-color-border-brand-strong: #7cc4f8;
-			--figma-color-border-component: #652ca8;
-			--figma-color-border-component-hover: #8a38f5;
-			--figma-color-border-component-strong: #d6b6fb;
-			--figma-color-border-danger: #963323;
-			--figma-color-border-danger-strong: #fca397;
-			--figma-color-border-disabled: #444444;
-			--figma-color-border-disabled-strong: #ffffff66;
-			--figma-color-border-onbrand: #0a6dc2;
-			--figma-color-border-onbrand-strong: #ffffff;
-			--figma-color-border-oncomponent: #7a2ed6;
-			--figma-color-border-oncomponent-strong: #ffffff;
-			--figma-color-border-ondanger: #c4381c;
-			--figma-color-border-ondanger-strong: #ffffff;
-			--figma-color-border-onselected: #667799;
-			--figma-color-border-onselected-strong: #ffffffe5;
-			--figma-color-border-onsuccess: #078348;
-			--figma-color-border-onsuccess-strong: #ffffff;
-			--figma-color-border-onwarning: #e4a711;
-			--figma-color-border-onwarning-strong: #000000e5;
-			--figma-color-border-selected: #0c8ce9;
-			--figma-color-border-selected-strong: #7cc4f8;
-			--figma-color-border-strong: #ffffffe5;
-			--figma-color-border-success: #0a5c35;
-			--figma-color-border-success-strong: #79d297;
-			--figma-color-border-warning: #925711;
-			--figma-color-border-warning-strong: #f7d15f;
-			--figma-color-icon: #ffffff;
-			--figma-color-icon-brand: #7cc4f8;
-			--figma-color-icon-brand-pressed: #0c8ce9;
-			--figma-color-icon-brand-secondary: #536383;
-			--figma-color-icon-brand-tertiary: #394360;
-			--figma-color-icon-component: #d1a8ff;
-			--figma-color-icon-component-pressed: #d6b6fb;
-			--figma-color-icon-component-secondary: #6b5884;
-			--figma-color-icon-component-tertiary: #6b5884;
-			--figma-color-icon-danger: #e03e1a;
-			--figma-color-icon-danger-hover: #fbbcb6;
-			--figma-color-icon-danger-pressed: #fbbcb6;
-			--figma-color-icon-danger-secondary: #e03e1a;
-			--figma-color-icon-danger-secondary-hover: #e03e1a;
-			--figma-color-icon-danger-tertiary: #e03e1a;
-			--figma-color-icon-disabled: #ffffff66;
-			--figma-color-icon-hover: #ffffff;
-			--figma-color-icon-onbrand: #ffffff;
-			--figma-color-icon-onbrand-secondary: #ffffffcc;
-			--figma-color-icon-onbrand-tertiary: #ffffff66;
-			--figma-color-icon-oncomponent: #ffffff;
-			--figma-color-icon-oncomponent-secondary: #ffffffcc;
-			--figma-color-icon-oncomponent-tertiary: #ffffff66;
-			--figma-color-icon-ondanger: #ffffff;
-			--figma-color-icon-ondanger-secondary: #ffffffcc;
-			--figma-color-icon-ondanger-tertiary: #ffffff66;
-			--figma-color-icon-ondisabled: #2c2c2c;
-			--figma-color-icon-oninverse: #000000e5;
-			--figma-color-icon-onselected: #ffffff;
-			--figma-color-icon-onselected-secondary: #ffffffb2;
-			--figma-color-icon-onselected-strong: #ffffff;
-			--figma-color-icon-onselected-tertiary: #ffffff66;
-			--figma-color-icon-onsuccess: #ffffff;
-			--figma-color-icon-onsuccess-secondary: #ffffffcc;
-			--figma-color-icon-onsuccess-tertiary: #ffffff66;
-			--figma-color-icon-onwarning: #000000e5;
-			--figma-color-icon-onwarning-secondary: #00000080;
-			--figma-color-icon-onwarning-tertiary: #0000004d;
-			--figma-color-icon-pressed: #0a6dc2;
-			--figma-color-icon-secondary: #ffffffb2;
-			--figma-color-icon-secondary-hover: #ffffff;
-			--figma-color-icon-selected: #7cc4f8;
-			--figma-color-icon-selected-secondary: #7cc4f8;
-			--figma-color-icon-selected-tertiary: #7cc4f8;
-			--figma-color-icon-success: #198f51;
-			--figma-color-icon-success-pressed: #a1e8b9;
-			--figma-color-icon-success-secondary: #198f51;
-			--figma-color-icon-success-tertiary: #198f51;
-			--figma-color-icon-tertiary: #ffffff66;
-			--figma-color-icon-tertiary-hover: #ffffff;
-			--figma-color-icon-warning: #f3c11b;
-			--figma-color-icon-warning-pressed: #f7d15f;
-			--figma-color-icon-warning-secondary: #f3c11b;
-			--figma-color-icon-warning-tertiary: #f3c11b;
-			--figma-color-text: #ffffff;
-			--figma-color-text-brand: #7cc4f8;
-			--figma-color-text-brand-secondary: #7cc4f8;
-			--figma-color-text-brand-tertiary: #7cc4f8;
-			--figma-color-text-component: #d1a8ff;
-			--figma-color-text-component-pressed: #d6b6fb;
-			--figma-color-text-component-secondary: #6b5884;
-			--figma-color-text-component-tertiary: #6b5884;
-			--figma-color-text-danger: #fca397;
-			--figma-color-text-danger-secondary: #fca397;
-			--figma-color-text-danger-tertiary: #fca397;
-			--figma-color-text-disabled: #ffffff66;
-			--figma-color-text-hover: #ffffff;
-			--figma-color-text-onbrand: #ffffff;
-			--figma-color-text-onbrand-secondary: #ffffffcc;
-			--figma-color-text-onbrand-tertiary: #ffffff66;
-			--figma-color-text-oncomponent: #ffffff;
-			--figma-color-text-oncomponent-secondary: #ffffffcc;
-			--figma-color-text-oncomponent-tertiary: #ffffff66;
-			--figma-color-text-ondanger: #ffffff;
-			--figma-color-text-ondanger-secondary: #ffffffcc;
-			--figma-color-text-ondanger-tertiary: #ffffff66;
-			--figma-color-text-ondisabled: #2c2c2c;
-			--figma-color-text-oninverse: #000000e5;
-			--figma-color-text-onselected: #ffffffe5;
-			--figma-color-text-onselected-secondary: #ffffffb2;
-			--figma-color-text-onselected-strong: #ffffff;
-			--figma-color-text-onselected-tertiary: #ffffff66;
-			--figma-color-text-onsuccess: #ffffff;
-			--figma-color-text-onsuccess-secondary: #ffffffcc;
-			--figma-color-text-onsuccess-tertiary: #ffffff66;
-			--figma-color-text-onwarning: #000000e5;
-			--figma-color-text-onwarning-secondary: #00000080;
-			--figma-color-text-onwarning-tertiary: #0000004d;
-			--figma-color-text-secondary: #ffffffb2;
-			--figma-color-text-secondary-hover: #ffffff;
-			--figma-color-text-selected: #7cc4f8;
-			--figma-color-text-selected-secondary: #7cc4f8;
-			--figma-color-text-selected-tertiary: #7cc4f8;
-			--figma-color-text-success: #79d297;
-			--figma-color-text-success-secondary: #79d297;
-			--figma-color-text-success-tertiary: #79d297;
-			--figma-color-text-tertiary: #ffffff66;
-			--figma-color-text-tertiary-hover: #ffffff;
-			--figma-color-text-warning: #f7d15f;
-			--figma-color-text-warning-secondary: #f7d15f;
-			--figma-color-text-warning-tertiary: #f7d15f;
-		}
-	}
+      --figma-color-bg: #2c2c2c;
+      --figma-color-bg-brand: #0c8ce9;
+      --figma-color-bg-brand-hover: #0a6dc2;
+      --figma-color-bg-brand-pressed: #0a6dc2;
+      --figma-color-bg-brand-secondary: #105cad;
+      --figma-color-bg-brand-tertiary: #394360;
+      --figma-color-bg-component: #8a38f5;
+      --figma-color-bg-component-hover: #7a2ed6;
+      --figma-color-bg-component-pressed: #7a2ed6;
+      --figma-color-bg-component-secondary: #652ca8;
+      --figma-color-bg-component-tertiary: #473956;
+      --figma-color-bg-danger: #e03e1a;
+      --figma-color-bg-danger-hover: #c4381c;
+      --figma-color-bg-danger-pressed: #c4381c;
+      --figma-color-bg-danger-secondary: #963323;
+      --figma-color-bg-danger-tertiary: #7c2622;
+      --figma-color-bg-disabled: #757575;
+      --figma-color-bg-disabled-secondary: #b3b3b3;
+      --figma-color-bg-hover: #383838;
+      --figma-color-bg-inverse: #ffffff;
+      --figma-color-bg-onselected: #667799;
+      --figma-color-bg-onselected-hover: #667799;
+      --figma-color-bg-onselected-pressed: #667799;
+      --figma-color-bg-pressed: #383838;
+      --figma-color-bg-secondary: #383838;
+      --figma-color-bg-selected: #4a5878;
+      --figma-color-bg-selected-hover: #536383;
+      --figma-color-bg-selected-pressed: #536383;
+      --figma-color-bg-selected-secondary: #394360;
+      --figma-color-bg-selected-strong: #0c8ce9;
+      --figma-color-bg-selected-tertiary: #394360;
+      --figma-color-bg-success: #198f51;
+      --figma-color-bg-success-hover: #078348;
+      --figma-color-bg-success-pressed: #078348;
+      --figma-color-bg-success-secondary: #0a5c35;
+      --figma-color-bg-success-tertiary: #0a4c2d;
+      --figma-color-bg-tertiary: #444444;
+      --figma-color-bg-warning: #f3c11b;
+      --figma-color-bg-warning-hover: #f2b50d;
+      --figma-color-bg-warning-pressed: #f2b50d;
+      --figma-color-bg-warning-secondary: #e4a711;
+      --figma-color-bg-warning-tertiary: #c58011;
+      --figma-color-border: #444444;
+      --figma-color-border-brand: #105cad;
+      --figma-color-border-brand-strong: #7cc4f8;
+      --figma-color-border-component: #652ca8;
+      --figma-color-border-component-hover: #8a38f5;
+      --figma-color-border-component-strong: #d6b6fb;
+      --figma-color-border-danger: #963323;
+      --figma-color-border-danger-strong: #fca397;
+      --figma-color-border-disabled: #444444;
+      --figma-color-border-disabled-strong: #ffffff66;
+      --figma-color-border-onbrand: #0a6dc2;
+      --figma-color-border-onbrand-strong: #ffffff;
+      --figma-color-border-oncomponent: #7a2ed6;
+      --figma-color-border-oncomponent-strong: #ffffff;
+      --figma-color-border-ondanger: #c4381c;
+      --figma-color-border-ondanger-strong: #ffffff;
+      --figma-color-border-onselected: #667799;
+      --figma-color-border-onselected-strong: #ffffffe5;
+      --figma-color-border-onsuccess: #078348;
+      --figma-color-border-onsuccess-strong: #ffffff;
+      --figma-color-border-onwarning: #e4a711;
+      --figma-color-border-onwarning-strong: #000000e5;
+      --figma-color-border-selected: #0c8ce9;
+      --figma-color-border-selected-strong: #7cc4f8;
+      --figma-color-border-strong: #ffffffe5;
+      --figma-color-border-success: #0a5c35;
+      --figma-color-border-success-strong: #79d297;
+      --figma-color-border-warning: #925711;
+      --figma-color-border-warning-strong: #f7d15f;
+      --figma-color-icon: #ffffff;
+      --figma-color-icon-brand: #7cc4f8;
+      --figma-color-icon-brand-pressed: #0c8ce9;
+      --figma-color-icon-brand-secondary: #536383;
+      --figma-color-icon-brand-tertiary: #394360;
+      --figma-color-icon-component: #d1a8ff;
+      --figma-color-icon-component-pressed: #d6b6fb;
+      --figma-color-icon-component-secondary: #6b5884;
+      --figma-color-icon-component-tertiary: #6b5884;
+      --figma-color-icon-danger: #e03e1a;
+      --figma-color-icon-danger-hover: #fbbcb6;
+      --figma-color-icon-danger-pressed: #fbbcb6;
+      --figma-color-icon-danger-secondary: #e03e1a;
+      --figma-color-icon-danger-secondary-hover: #e03e1a;
+      --figma-color-icon-danger-tertiary: #e03e1a;
+      --figma-color-icon-disabled: #ffffff66;
+      --figma-color-icon-hover: #ffffff;
+      --figma-color-icon-onbrand: #ffffff;
+      --figma-color-icon-onbrand-secondary: #ffffffcc;
+      --figma-color-icon-onbrand-tertiary: #ffffff66;
+      --figma-color-icon-oncomponent: #ffffff;
+      --figma-color-icon-oncomponent-secondary: #ffffffcc;
+      --figma-color-icon-oncomponent-tertiary: #ffffff66;
+      --figma-color-icon-ondanger: #ffffff;
+      --figma-color-icon-ondanger-secondary: #ffffffcc;
+      --figma-color-icon-ondanger-tertiary: #ffffff66;
+      --figma-color-icon-ondisabled: #2c2c2c;
+      --figma-color-icon-oninverse: #000000e5;
+      --figma-color-icon-onselected: #ffffff;
+      --figma-color-icon-onselected-secondary: #ffffffb2;
+      --figma-color-icon-onselected-strong: #ffffff;
+      --figma-color-icon-onselected-tertiary: #ffffff66;
+      --figma-color-icon-onsuccess: #ffffff;
+      --figma-color-icon-onsuccess-secondary: #ffffffcc;
+      --figma-color-icon-onsuccess-tertiary: #ffffff66;
+      --figma-color-icon-onwarning: #000000e5;
+      --figma-color-icon-onwarning-secondary: #00000080;
+      --figma-color-icon-onwarning-tertiary: #0000004d;
+      --figma-color-icon-pressed: #0a6dc2;
+      --figma-color-icon-secondary: #ffffffb2;
+      --figma-color-icon-secondary-hover: #ffffff;
+      --figma-color-icon-selected: #7cc4f8;
+      --figma-color-icon-selected-secondary: #7cc4f8;
+      --figma-color-icon-selected-tertiary: #7cc4f8;
+      --figma-color-icon-success: #198f51;
+      --figma-color-icon-success-pressed: #a1e8b9;
+      --figma-color-icon-success-secondary: #198f51;
+      --figma-color-icon-success-tertiary: #198f51;
+      --figma-color-icon-tertiary: #ffffff66;
+      --figma-color-icon-tertiary-hover: #ffffff;
+      --figma-color-icon-warning: #f3c11b;
+      --figma-color-icon-warning-pressed: #f7d15f;
+      --figma-color-icon-warning-secondary: #f3c11b;
+      --figma-color-icon-warning-tertiary: #f3c11b;
+      --figma-color-text: #ffffff;
+      --figma-color-text-brand: #7cc4f8;
+      --figma-color-text-brand-secondary: #7cc4f8;
+      --figma-color-text-brand-tertiary: #7cc4f8;
+      --figma-color-text-component: #d1a8ff;
+      --figma-color-text-component-pressed: #d6b6fb;
+      --figma-color-text-component-secondary: #6b5884;
+      --figma-color-text-component-tertiary: #6b5884;
+      --figma-color-text-danger: #fca397;
+      --figma-color-text-danger-secondary: #fca397;
+      --figma-color-text-danger-tertiary: #fca397;
+      --figma-color-text-disabled: #ffffff66;
+      --figma-color-text-hover: #ffffff;
+      --figma-color-text-onbrand: #ffffff;
+      --figma-color-text-onbrand-secondary: #ffffffcc;
+      --figma-color-text-onbrand-tertiary: #ffffff66;
+      --figma-color-text-oncomponent: #ffffff;
+      --figma-color-text-oncomponent-secondary: #ffffffcc;
+      --figma-color-text-oncomponent-tertiary: #ffffff66;
+      --figma-color-text-ondanger: #ffffff;
+      --figma-color-text-ondanger-secondary: #ffffffcc;
+      --figma-color-text-ondanger-tertiary: #ffffff66;
+      --figma-color-text-ondisabled: #2c2c2c;
+      --figma-color-text-oninverse: #000000e5;
+      --figma-color-text-onselected: #ffffffe5;
+      --figma-color-text-onselected-secondary: #ffffffb2;
+      --figma-color-text-onselected-strong: #ffffff;
+      --figma-color-text-onselected-tertiary: #ffffff66;
+      --figma-color-text-onsuccess: #ffffff;
+      --figma-color-text-onsuccess-secondary: #ffffffcc;
+      --figma-color-text-onsuccess-tertiary: #ffffff66;
+      --figma-color-text-onwarning: #000000e5;
+      --figma-color-text-onwarning-secondary: #00000080;
+      --figma-color-text-onwarning-tertiary: #0000004d;
+      --figma-color-text-secondary: #ffffffb2;
+      --figma-color-text-secondary-hover: #ffffff;
+      --figma-color-text-selected: #7cc4f8;
+      --figma-color-text-selected-secondary: #7cc4f8;
+      --figma-color-text-selected-tertiary: #7cc4f8;
+      --figma-color-text-success: #79d297;
+      --figma-color-text-success-secondary: #79d297;
+      --figma-color-text-success-tertiary: #79d297;
+      --figma-color-text-tertiary: #ffffff66;
+      --figma-color-text-tertiary-hover: #ffffff;
+      --figma-color-text-warning: #f7d15f;
+      --figma-color-text-warning-secondary: #f7d15f;
+      --figma-color-text-warning-tertiary: #f7d15f;
+    }
+  }
 
-	.show-dimensions {
-		/* outline: none; */
-		display: flex !important;
-		opacity: 1 !important;
-	}
-
-	.show-dimensions label {
-		opacity: 1;
-		transition-property: opacity;
-		transition-duration: 400ms;
-	}
-
-	/* .glassy-background {
-		backdrop-filter: blur(10px);
-		background-color: rgba(255, 255, 255, 0.2);
-		border-radius: 10px;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		padding: 20px;
-	} */
-
-	main {
-		/*
-		s = start
-		e = end
-
-		m = mobile
-		t = tablet
-		l = laptop
-		d = desktop
-		4k = 4k
-		*/
-		grid-template-columns:
-		/**/ [4k-s] 75rem [d-s] 13rem [l-s] 8rem [t-s] 14rem [m-s] 20rem [m-e] 14rem [t-e] 8rem [l-e] 13rem [d-e] 75rem [4k-e];
-		grid-template-rows: 100px 1fr;
-	}
-
-	header {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 1rem;
-		padding-top: 2rem;
-		flex-wrap: wrap;
-		margin-inline: auto;
-		inline-size: 100%;
-
-		grid-column-start: 1;
-		grid-column-end: -1;
-		grid-row: 1;
-	}
-
-	header:hover {
-		opacity: 1;
-	}
-
-	.image-frame {
-		grid-column-start: 1;
-		grid-column-end: -1;
-		grid-row: 1;
-		block-size: 100%;
-	}
-
-	@media (height < 160px) {
-		.dimensions-container {
-			visibility: hidden;
-		}
-	}
-	@media (height < 220px) {
-		*:not(header) {
-			overflow: hidden;
-		}
-		.other-components {
-			visibility: hidden;
-		}
-	}
+  main {
+    font-family: inter;
+  }
 </style>
 
-<main class="overflow-visible grid h-full m-0">
-	<header class="h-fit">
-		<!-- URL search component -->
-		<input
-			class="outline outline-gray-200 z-10 basis-96 w-full px-4 py-1 rounded-sm"
-			type="text"
-			id="screenshot-url-input"
-			placeholder="Enter image URL" />
+<!-- https://www.youtube.com/watch?v=1TSLEzNzGQM&t=154s
+https://www.youtube.com/watch?v=gieEQFIfgYc -->
+<!-- <header class="h-fit">
+	<section
+		class="dimensions-container border border-gray-400 basis-96 w-full relative flex flex-col">
+		<ul
+			id="dimensions-list"
+			class="bg-[var(--figma-color-bg)] top-12 absolute hidden rounded-md p-2 max-h-[520px] gap-2 overflow-y-scroll flex-col flex-start">
+		</ul>
+	</section>
+</header> -->
 
-		<!-- Dimensions selection component -->
-		<section
-			class="dimensions-container border border-gray-400 basis-96 w-full relative flex flex-col">
-			<button
-				class="whitespace-nowrap px-4 py-1 text-left rounded-lg h-[32] text-[var(--figma-color-text)]"
-				type="button"
-				id="dimensions-btn">
-				Dimensions:
-				<span id="selected-dimension">Pixel 7a</span>
-			</button>
-			<ul
-				id="dimensions-list"
-				class="bg-[var(--figma-color-bg)] top-12 absolute hidden rounded-md p-2 max-h-[520px] gap-2 overflow-y-scroll flex-col flex-start">
-				<!-- Dynamically created dimensions -->
-			</ul>
-		</section>
+<main class="grid select-none gap-8 overflow-hidden">
+  <input
+    class="z-10 mx-4 mt-6 rounded-md p-1 px-2 text-sm outline outline-slate-200"
+    type="text"
+    id="screenshot-url-input"
+    placeholder="URL to screenshot..."
+  />
 
-		<!-- Other components -->
-		<div class="z-10 other-components gone basis-96 w-full flex gap-8">
-			<!-- Dimensions width-x-height input component -->
-			<section class="border border-gray-400 flex gap-2">
-				<input
-					class="w-[80px] px-2 py-1 text-center"
-					type="number"
-					id="dimension-width"
-					value="320"
-					min="320"
-					max="2160" />
-				<span class="text-[var(--figma-color-text)] m-auto">
-					<svg
-						width="16"
-						height="16"
-						viewBox="0 0 24 24"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M4.18836 4.38931L4.28179 4.28179C4.44434 4.11922 4.65982 4.02037 4.88908 4.00322C5.11833 3.98607 5.34613 4.05177 5.53104 4.18836L5.63856 4.28179L12 10.642L18.3614 4.28051C18.5241 4.11813 18.7397 4.01951 18.969 4.0026C19.1982 3.98569 19.4259 4.0516 19.6107 4.18836L19.7182 4.28179C19.8808 4.44434 19.9796 4.65982 19.9968 4.88908C20.0139 5.11833 19.9482 5.34613 19.8116 5.53104L19.7182 5.63856L13.358 12L19.7195 18.3614C19.8819 18.5241 19.9805 18.7397 19.9974 18.969C20.0143 19.1982 19.9484 19.4259 19.8116 19.6107L19.7182 19.7182C19.5557 19.8808 19.3402 19.9796 19.1109 19.9968C18.8817 20.0139 18.6539 19.9482 18.469 19.8116L18.3614 19.7182L12 13.358L5.63856 19.7195C5.47586 19.8819 5.26029 19.9805 5.03104 19.9974C4.80179 20.0143 4.57408 19.9484 4.38931 19.8116L4.28179 19.7182C4.11922 19.5557 4.02037 19.3402 4.00322 19.1109C3.98607 18.8817 4.05177 18.6539 4.18836 18.469L4.28179 18.3614L10.642 12L4.28051 5.63856C4.11813 5.47586 4.01951 5.26029 4.0026 5.03104C3.98569 4.80179 4.0516 4.57408 4.18836 4.38931Z"
-							class="fill-[var(--figma-color-text)]"></path>
-					</svg>
-				</span>
-				<input
-					class="w-[80px] px-2 py-1 text-center"
-					type="number"
-					id="dimension-height"
-					value="568"
-					min="568"
-					max="" />
-			</section>
+  <section class="grid gap-4">
+    <h2 class="pl-4">Frame</h2>
 
-			<!-- Dimensions zoom input component -->
-			<section>
-				<input
-					class="text-center px-2 py-1 w-[80px]"
-					type="text"
-					value="100%"
-					id="zoom" />
-			</section>
+    <nav>
+      <ul class="flex flex-col gap-2 text-[12px] opacity-80">
+        <li class="group flex items-center gap-2">
+          <details class="group w-full">
+            <summary class="flex items-center gap-1 px-1">
+              <svg
+                class="fill-gray-400 group-open:rotate-90 group-hover:fill-black"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1rem"
+                height="1rem"
+                viewBox="0 0 20 20"
+              >
+                <path d="m8 6l6 4.03L8 14z" />
+              </svg>
+              Phone
+            </summary>
 
-			<!-- Dimensions options component -->
-			<!-- <section class="additional options">
-				<svg
-					width="24px"
-					height="24px"
-					viewBox="0 0 24 24"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg">
-					<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-					<g
-						id="SVGRepo_tracerCarrier"
-						stroke-linecap="round"
-						stroke-linejoin="round"></g>
-					<g id="SVGRepo_iconCarrier">
-						<path
-							class="stroke-[var(--figma-color-text)]"
-							d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
-						<path
-							class="stroke-[var(--figma-color-text)]"
-							d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
-						<path
-							class="stroke-[var(--figma-color-text)]"
-							d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
-					</g>
-				</svg>
-			</section> -->
-		</div>
-	</header>
+            <ul class="flex flex-col pt-2">
+              <li class="flex justify-between px-4">
+                <label
+                  class="flex w-full gap-2 py-2"
+                  for="iphone-14-15-pro-max"
+                >
+                  <input
+                    type="checkbox"
+                    id="iphone-14-15-pro-max"
+                    name="iphone-14-15-pro-max"
+                  />
+                  <span class="w-full">iPhone 14 & 15 Pro Max</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                    430&hairsp;x&hairsp;932
+                  </span>
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-14-15-pro">
+                  <input
+                    type="checkbox"
+                    id="iphone-14-15-pro"
+                    name="iphone-14-15-pro"
+                  />
+                  <span class="w-full">iPhone 14 & 15 Pro</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                    393&hairsp;x&hairsp;852</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-13-14">
+                  <input
+                    type="checkbox"
+                    id="iphone-13-14"
+                    name="iphone-13-14"
+                  />
+                  <span class="w-full">iPhone 13 & 14</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >390&hairsp;x&hairsp;844</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-14-plus">
+                  <input
+                    type="checkbox"
+                    id="iphone-14-plus"
+                    name="iphone-14-plus"
+                  />
+                  <span class="w-full">iPhone 14 Plus</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >428&hairsp;x&hairsp;926</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-13-mini">
+                  <input
+                    type="checkbox"
+                    id="iphone-13-mini"
+                    name="iphone-13-mini"
+                  />
+                  <span class="w-full">iPhone 13 mini</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >375&hairsp;x&hairsp;812</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-se">
+                  <input type="checkbox" id="iphone-se" name="iphone-se" />
+                  <span class="w-full">iPhone SE</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >320&hairsp;x&hairsp;568</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-8-plus">
+                  <input
+                    type="checkbox"
+                    id="iphone-8-plus"
+                    name="iphone-8-plus"
+                  />
+                  <span class="w-full">iPhone 8 plus</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >414&hairsp;x&hairsp;736</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-8">
+                  <input type="checkbox" id="iphone-8" name="iphone-8" />
+                  <span class="w-full">iPhone 8</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >375&hairsp;x&hairsp;667</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="android-small">
+                  <input
+                    type="checkbox"
+                    id="android-small"
+                    name="android-small"
+                  />
+                  <span class="w-full">Android Small</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >360&hairsp;x&hairsp;640</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="android-large">
+                  <input
+                    type="checkbox"
+                    id="android-large"
+                    name="android-large"
+                  />
+                  <span class="w-full">Android Large</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >360&hairsp;x&hairsp;800</span
+                  >
+                </label>
+              </li>
+            </ul>
+          </details>
+        </li>
 
-	<!-- Image frame component-->
-	<ol
-		class="flex flex-wrap gap-4 rounded-lg image-frame outline outline-gray-200 min-w-[320px] w-[320px] h-[568px] min-h-[100px] resize overflow-hidden"
-		id="imageFrame">
-		<li class="resize rounded-sm inline-block">
-			<img class="w-full border" src="" id="image-content" />
-		</li>
-	</ol>
+        <hr class="bg-[#BCBCBC]" />
+        <li class="group flex items-center gap-2">
+          <details class="w-full">
+            <summary class="flex items-center gap-1 px-1">
+              <svg
+                class="fill-gray-400 group-hover:fill-black"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1rem"
+                height="1rem"
+                viewBox="0 0 20 20"
+              >
+                <path d="m8 6l6 4.03L8 14z" />
+              </svg>
+              Phone
+            </summary>
+
+            <ul class="flex flex-col pt-2">
+              <li class="flex justify-between px-2">
+                <label
+                  class="flex w-full gap-2 py-2"
+                  for="iphone-14-15-pro-max"
+                >
+                  <input
+                    type="checkbox"
+                    id="iphone-14-15-pro-max"
+                    name="iphone-14-15-pro-max"
+                  />
+                  <span class="w-full">iPhone 14 & 15 Pro Max</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                    430&hairsp;x&hairsp;932
+                  </span>
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-14-15-pro">
+                  <input
+                    type="checkbox"
+                    id="iphone-14-15-pro"
+                    name="iphone-14-15-pro"
+                  />
+                  <span class="w-full">iPhone 14 & 15 Pro</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                    393&hairsp;x&hairsp;852</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-13-14">
+                  <input
+                    type="checkbox"
+                    id="iphone-13-14"
+                    name="iphone-13-14"
+                  />
+                  <span class="w-full">iPhone 13 & 14</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >390&hairsp;x&hairsp;844</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-14-plus">
+                  <input
+                    type="checkbox"
+                    id="iphone-14-plus"
+                    name="iphone-14-plus"
+                  />
+                  <span class="w-full">iPhone 14 Plus</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >428&hairsp;x&hairsp;926</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-13-mini">
+                  <input
+                    type="checkbox"
+                    id="iphone-13-mini"
+                    name="iphone-13-mini"
+                  />
+                  <span class="w-full">iPhone 13 mini</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >375&hairsp;x&hairsp;812</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-se">
+                  <input type="checkbox" id="iphone-se" name="iphone-se" />
+                  <span class="w-full">iPhone SE</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >320&hairsp;x&hairsp;568</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-8-plus">
+                  <input
+                    type="checkbox"
+                    id="iphone-8-plus"
+                    name="iphone-8-plus"
+                  />
+                  <span class="w-full">iPhone 8 plus</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >414&hairsp;x&hairsp;736</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-8">
+                  <input type="checkbox" id="iphone-8" name="iphone-8" />
+                  <span class="w-full">iPhone 8</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >375&hairsp;x&hairsp;667</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="android-small">
+                  <input
+                    type="checkbox"
+                    id="android-small"
+                    name="android-small"
+                  />
+                  <span class="w-full">Android Small</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >360&hairsp;x&hairsp;640</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="android-large">
+                  <input
+                    type="checkbox"
+                    id="android-large"
+                    name="android-large"
+                  />
+                  <span class="w-full">Android Large</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >360&hairsp;x&hairsp;800</span
+                  >
+                </label>
+              </li>
+            </ul>
+          </details>
+        </li>
+
+        <hr class="bg-[#BCBCBC]" />
+        <li class="group flex items-center gap-2">
+          <details class="w-full">
+            <summary class="flex items-center gap-1 px-1">
+              <svg
+                class="fill-gray-400 group-hover:fill-black"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1rem"
+                height="1rem"
+                viewBox="0 0 20 20"
+              >
+                <path d="m8 6l6 4.03L8 14z" />
+              </svg>
+              Phone
+            </summary>
+
+            <ul class="flex flex-col pt-2">
+              <li class="flex justify-between px-2">
+                <label
+                  class="flex w-full gap-2 py-2"
+                  for="iphone-14-15-pro-max"
+                >
+                  <input
+                    type="checkbox"
+                    id="iphone-14-15-pro-max"
+                    name="iphone-14-15-pro-max"
+                  />
+                  <span class="w-full">iPhone 14 & 15 Pro Max</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                    430&hairsp;x&hairsp;932
+                  </span>
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-14-15-pro">
+                  <input
+                    type="checkbox"
+                    id="iphone-14-15-pro"
+                    name="iphone-14-15-pro"
+                  />
+                  <span class="w-full">iPhone 14 & 15 Pro</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                    393&hairsp;x&hairsp;852</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-13-14">
+                  <input
+                    type="checkbox"
+                    id="iphone-13-14"
+                    name="iphone-13-14"
+                  />
+                  <span class="w-full">iPhone 13 & 14</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >390&hairsp;x&hairsp;844</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-14-plus">
+                  <input
+                    type="checkbox"
+                    id="iphone-14-plus"
+                    name="iphone-14-plus"
+                  />
+                  <span class="w-full">iPhone 14 Plus</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >428&hairsp;x&hairsp;926</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-13-mini">
+                  <input
+                    type="checkbox"
+                    id="iphone-13-mini"
+                    name="iphone-13-mini"
+                  />
+                  <span class="w-full">iPhone 13 mini</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >375&hairsp;x&hairsp;812</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-se">
+                  <input type="checkbox" id="iphone-se" name="iphone-se" />
+                  <span class="w-full">iPhone SE</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >320&hairsp;x&hairsp;568</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-8-plus">
+                  <input
+                    type="checkbox"
+                    id="iphone-8-plus"
+                    name="iphone-8-plus"
+                  />
+                  <span class="w-full">iPhone 8 plus</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >414&hairsp;x&hairsp;736</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="iphone-8">
+                  <input type="checkbox" id="iphone-8" name="iphone-8" />
+                  <span class="w-full">iPhone 8</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >375&hairsp;x&hairsp;667</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="android-small">
+                  <input
+                    type="checkbox"
+                    id="android-small"
+                    name="android-small"
+                  />
+                  <span class="w-full">Android Small</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >360&hairsp;x&hairsp;640</span
+                  >
+                </label>
+              </li>
+              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
+                <label class="flex w-full gap-2 py-2" for="android-large">
+                  <input
+                    type="checkbox"
+                    id="android-large"
+                    name="android-large"
+                  />
+                  <span class="w-full">Android Large</span>
+                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                    >360&hairsp;x&hairsp;800</span
+                  >
+                </label>
+              </li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </nav>
+  </section>
 </main>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-	// #region elements
-	const currentDimension = { width: 320, height: 568 };
-	const screenshotUrlInput = document.getElementById("screenshot-url-input");
-	const dimensionsBtn = document.getElementById("dimensions-btn");
-	let dimensionText = document.getElementById("selected-dimension");
-	const dimensionsList = document.getElementById("dimensions-list");
-	// prettier-ignore
-	const dimensionListItems = document.getElementsByClassName("dimensions-list-item");
-	const dimensionWidth = document.getElementById("dimension-width");
-	const dimensionHeight = document.getElementById("dimension-height");
-	const imageFrame = document.getElementById("imageFrame");
+  // #region elements
 
-	// console.log("imageFrame.ariaSetSize", imageFrame.client);
-	// #endregion elements
+  console.log("rightPanel", rightPanel);
+  const screenshotUrlInput = document.getElementById("screenshot-url-input");
+  const dimensionsBtn = document.getElementById("dimensions-btn");
+  let dimensionText = document.getElementById("selected-dimension");
+  const dimensionsList = document.getElementById("dimensions-list");
+  // prettier-ignore
+  const dimensionListItems = document.getElementsByClassName("dimensions-list-item");
+  const dimensionWidth = document.getElementById("dimension-width");
+  const dimensionHeight = document.getElementById("dimension-height");
+  const imageFrame = document.getElementById("imageFrame");
 
-	// ------------------------------------------------------------------
-	// #region server events
-	// message listners for incoming server messages
-	onmessage = (event) => {
-		if (event.data.pluginMessage.type === "data-dimensions") {
-			renderDimensions(JSON.parse(event.data.pluginMessage.dimensions));
-		}
+  // console.log("imageFrame.ariaSetSize", imageFrame.client);
+  // #endregion elements
 
-		if (event.data.pluginMessage.type === "image") {
-			const blob = new Blob([event.data.pluginMessage.uint8Array], {
-				type: "image/png",
-			});
+  // ------------------------------------------------------------------
+  // #region server events
+  // message listners for incoming server messages
+  onmessage = (event) => {
+    if (event.data.pluginMessage.type === "data-dimensions") {
+      renderDimensions(JSON.parse(event.data.pluginMessage.dimensions));
+    }
 
-			const imageUrl = URL.createObjectURL(blob);
-			const img = document.getElementById("image-content");
-			img.src = imageUrl;
-		}
-	};
+    if (event.data.pluginMessage.type === "image") {
+      const blob = new Blob([event.data.pluginMessage.uint8Array], {
+        type: "image/png",
+      });
 
-	// #endregion server events
+      const imageUrl = URL.createObjectURL(blob);
+      const img = document.getElementById("image-content");
+      img.src = imageUrl;
+    }
+  };
 
-	// ------------------------------------------------------------------
+  // #endregion server events
 
-	// #region  dynamically rendered markup
-	function renderDimensions(dimensions) {
-		function createDimensions(dimensions) {
-			dimensions.map((dimension) => {
-				const dimensionEl = document.createElement("li");
+  // ------------------------------------------------------------------
 
-				// add styles
-				dimensionEl.classList.add("dimensions-list-item");
-				dimensionEl.classList.add("group");
-				dimensionEl.classList.add("hover:bg-[var(--figma-color-bg-theme)]");
-				dimensionEl.classList.add("rounded-lg");
+  // #region  dynamically rendered markup
+  function renderDimensions(dimensions) {
+    function createDimensions(dimensions) {
+      dimensions.map((dimension) => {
+        const dimensionEl = document.createElement("li");
 
-				// add markup
-				dimensionEl.innerHTML = `
+        // add styles
+        dimensionEl.classList.add("dimensions-list-item");
+        dimensionEl.classList.add("group");
+        dimensionEl.classList.add("hover:bg-[var(--figma-color-bg-theme)]");
+        dimensionEl.classList.add("rounded-lg");
+
+        // add markup
+        dimensionEl.innerHTML = `
 					<label class="w-full flex gap-[8px] p-2 px-4 cursor-pointer"
 						for="${dimension.deviceName.toLowerCase().split(" ").join("-")}">
 						<input
@@ -457,171 +737,170 @@
 						</span>
 					</label>
 					`;
-				dimensionsList.appendChild(dimensionEl);
+        dimensionsList.appendChild(dimensionEl);
 
-				// event listeners
-				dimensionEl.addEventListener("click", (event) => {
-					switch (event.target.tagName) {
-						case "SPAN":
-							return;
-						case "LABEL":
-							return;
-						default:
-							break;
-					}
+        // event listeners
+        dimensionEl.addEventListener("click", (event) => {
+          switch (event.target.tagName) {
+            case "SPAN":
+              return;
+            case "LABEL":
+              return;
+            default:
+              break;
+          }
 
-					const width = parseInt(event.target.dataset.dimension.split(",")[0]);
-					const height = parseInt(event.target.dataset.dimension.split(",")[1]);
+          const width = parseInt(event.target.dataset.dimension.split(",")[0]);
+          const height = parseInt(event.target.dataset.dimension.split(",")[1]);
 
-					// dimensionWidth.setAttribute("value", currentDimension.width);
-					// dimensionHeight.setAttribute("value", currentDimensionheight);
-					// console.log("currentDimension", currentDimension);
-					// currentDimension.width = width;
-					// currentDimension.height = height;
-					// console.log("currentDimension", currentDimension);
-					dimensionText.innerText = event.target.dataset.devicename;
+          // dimensionWidth.setAttribute("value", currentDimension.width);
+          // dimensionHeight.setAttribute("value", currentDimensionheight);
+          // console.log("currentDimension", currentDimension);
+          // currentDimension.width = width;
+          // currentDimension.height = height;
+          // console.log("currentDimension", currentDimension);
+          dimensionText.innerText = event.target.dataset.devicename;
 
-					parent.postMessage(
-						{
-							pluginMessage: {
-								type: "resize-figma-plugin",
-								options: { width, height },
-							},
-						},
-						"*"
-					);
-				});
-			});
-		}
+          parent.postMessage(
+            {
+              pluginMessage: {
+                type: "resize-figma-plugin",
+                options: { width, height },
+              },
+            },
+            "*",
+          );
+        });
+      });
+    }
 
-		createDimensions(dimensions);
-	}
-	// #endregion  dynamically rendered markup
+    createDimensions(dimensions);
+  }
+  // #endregion  dynamically rendered markup
 
-	// ------------------------------------------------------------------
+  // ------------------------------------------------------------------
 
-	// #region event listeners
-	const resizeObserver = new ResizeObserver(handleImageFrameResize);
-	resizeObserver.observe(imageFrame);
+  // #region event listeners
+  const resizeObserver = new ResizeObserver(handleImageFrameResize);
+  resizeObserver.observe(imageFrame);
 
-	screenshotUrlInput.addEventListener("input", async (event) =>
-		handleScreenshotUrlInput(event)
-	);
+  screenshotUrlInput.addEventListener("input", async (event) =>
+    handleScreenshotUrlInput(event),
+  );
 
-	dimensionsBtn.addEventListener("click", (event) =>
-		handleDimensionsBtnClick(event)
-	);
+  dimensionsBtn.addEventListener("click", (event) =>
+    handleDimensionsBtnClick(event),
+  );
 
-	dimensionWidth.addEventListener("input", (event) => {
-		handleDimensionWidthInput(event);
-	});
-	dimensionHeight.addEventListener("input", (event) => {
-		handleDimensionHeightInput(event);
-	});
+  dimensionWidth.addEventListener("input", (event) => {
+    handleDimensionWidthInput(event);
+  });
+  dimensionHeight.addEventListener("input", (event) => {
+    handleDimensionHeightInput(event);
+  });
 
-	// #endregion event listeners
+  // #endregion event listeners
 
-	function isValidUrl(url) {
-		if (!url.includes(".")) return false;
+  function isValidUrl(url) {
+    if (!url.includes(".")) return false;
 
-		try {
-			new URL(url);
-			return true;
-		} catch (error) {
-			console.log(error);
-			return false;
-		}
-	}
+    try {
+      new URL(url);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 
-	// #region handlers
-	function handleScreenshotUrlInput(event) {
-		const urlToScreenshot = screenshotUrlInput.value;
-		const val = isValidUrl(urlToScreenshot);
-		if (val) {
-			console.log("val", val);
-			parent.postMessage(
-				{
-					pluginMessage: {
-						type: "load-image",
-						options: urlToScreenshot,
-					},
-				},
-				"*"
-			);
-		}
-	}
+  // #region handlers
+  function handleScreenshotUrlInput(event) {
+    const urlToScreenshot = screenshotUrlInput.value;
+    const val = isValidUrl(urlToScreenshot);
+    if (val) {
+      console.log("val", val);
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: "load-image",
+            options: urlToScreenshot,
+          },
+        },
+        "*",
+      );
+    }
+  }
 
-	function handleDimensionsBtnClick(event) {
-		dimensionsList.classList.toggle("show-dimensions");
-	}
+  function handleDimensionsBtnClick(event) {
+    dimensionsList.classList.toggle("show-dimensions");
+  }
 
-	function handleDimensionWidthInput(event) {
-		const MINIMUM_WIDTH = 320;
-		const inputElement = event.target;
-		const inputValue = parseInt(inputElement.value);
-		let width = inputValue > MINIMUM_WIDTH ? inputValue : MINIMUM_WIDTH;
-		let height = parseInt(dimensionHeight.value);
-		// width = width + 32;
-		// height = height + 32;
-		if (inputValue > MINIMUM_WIDTH) {
-			parent.postMessage(
-				{
-					pluginMessage: {
-						type: "resize-figma-plugin",
-						options: { width, height },
-					},
-				},
-				"*"
-			);
-			// inputElement.setAttribute("value", width);
-			imageFrame.width = MINIMUM_WIDTH;
-		}
-	}
+  function handleDimensionWidthInput(event) {
+    const MINIMUM_WIDTH = 320;
+    const inputElement = event.target;
+    const inputValue = parseInt(inputElement.value);
+    let width = inputValue > MINIMUM_WIDTH ? inputValue : MINIMUM_WIDTH;
+    let height = parseInt(dimensionHeight.value);
+    // width = width + 32;
+    // height = height + 32;
+    if (inputValue > MINIMUM_WIDTH) {
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: "resize-figma-plugin",
+            options: { width, height },
+          },
+        },
+        "*",
+      );
+      // inputElement.setAttribute("value", width);
+      imageFrame.width = MINIMUM_WIDTH;
+    }
+  }
 
-	function handleDimensionHeightInput(event) {
-		const MINIMUM_HEIGHT = 568;
-		const inputElement = event.target;
-		const inputValue = parseInt(inputElement.value);
-		let height = inputValue > MINIMUM_HEIGHT ? inputValue : MINIMUM_HEIGHT;
-		let width = parseInt(dimensionWidth.value);
+  function handleDimensionHeightInput(event) {
+    const MINIMUM_HEIGHT = 568;
+    const inputElement = event.target;
+    const inputValue = parseInt(inputElement.value);
+    let height = inputValue > MINIMUM_HEIGHT ? inputValue : MINIMUM_HEIGHT;
+    let width = parseInt(dimensionWidth.value);
 
-		// width = width + 32;
-		// height = height + 32;
+    // width = width + 32;
+    // height = height + 32;
 
-		if (inputValue > MINIMUM_HEIGHT) {
-			parent.postMessage(
-				{
-					pluginMessage: {
-						type: "resize-figma-plugin",
-						options: { width, height },
-					},
-				},
-				"*"
-			);
-			inputElement.setAttribute("value", height);
-			imageFrame.height = MINIMUM_HEIGHT;
-		}
-	}
+    if (inputValue > MINIMUM_HEIGHT) {
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: "resize-figma-plugin",
+            options: { width, height },
+          },
+        },
+        "*",
+      );
+      inputElement.setAttribute("value", height);
+      imageFrame.height = MINIMUM_HEIGHT;
+    }
+  }
 
-	function handleImageFrameResize(entry) {
-		const target = entry[0];
-		const borderBoxSize = target.borderBoxSize;
-		let width = parseInt(borderBoxSize[0].inlineSize);
-		let height = parseInt(borderBoxSize[0].blockSize);
+  function handleImageFrameResize(entry) {
+    const target = entry[0];
+    const borderBoxSize = target.borderBoxSize;
+    let width = parseInt(borderBoxSize[0].inlineSize);
+    let height = parseInt(borderBoxSize[0].blockSize);
 
-		dimensionHeight.setAttribute("value", height);
-		dimensionWidth.setAttribute("value", width);
+    dimensionHeight.setAttribute("value", height);
+    dimensionWidth.setAttribute("value", width);
 
-		parent.postMessage(
-			{
-				pluginMessage: {
-					type: "resize-figma-plugin",
-					options: { width, height },
-				},
-			},
-			"*"
-		);
-	}
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "resize-figma-plugin",
+          options: { width, height },
+        },
+      },
+      "*",
+    );
+  }
 
-	// #endregion handlers
+  // #endregion handlers
 </script>
