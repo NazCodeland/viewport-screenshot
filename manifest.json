@@ -1,5 +1,5 @@
 {
-  "name": "URL Screenshot",
+  "name": "Viewport Screenshot",
   "id": "1402824004081349351",
   "api": "1.0.0",
   "main": "./src/plugin.js",
@@ -7,5 +7,9 @@
   "editorType": ["figma"],
   "capabilities": [],
   "enableProposedApi": false,
-  "documentAccess": "dynamic-page"
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["https://tailwindcss.com"],
+    "devAllowedDomains": ["https://tailwindcss.com", "http://localhost:3000"]
+  }
 }

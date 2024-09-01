@@ -194,503 +194,504 @@
     }
   }
 
-  main {
+  form {
     font-family: inter;
   }
 </style>
 
-<!-- https://www.youtube.com/watch?v=1TSLEzNzGQM&t=154s
-https://www.youtube.com/watch?v=gieEQFIfgYc -->
-<!-- <header class="h-fit">
-	<section
-		class="dimensions-container border border-gray-400 basis-96 w-full relative flex flex-col">
-		<ul
-			id="dimensions-list"
-			class="bg-[var(--figma-color-bg)] top-12 absolute hidden rounded-md p-2 max-h-[520px] gap-2 overflow-y-scroll flex-col flex-start">
-		</ul>
-	</section>
-</header> -->
+<form
+  action="https://localhost:5173/desktop?url=&.."
+  method="GET"
+  class="grid select-none gap-8 overflow-hidden"
+>
+  <header class="mx-2 mt-6 flex flex-col gap-2">
+    <search class="flex rounded-[5px] bg-[#F5F5F5] has-[:focus]:ring-1">
+      <svg class="ml-1" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path
+          fill="black"
+          fill-rule="evenodd"
+          d="M15 10.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-.956 4.206a5.5 5.5 0 1 1 .662-.662.5.5 0 0 1 .148.102l3 3a.5.5 0 1 1-.707.707l-3-3a.5.5 0 0 1-.103-.147Z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+      <input
+        class="w-full text-ellipsis bg-transparent px-1 text-[11px] font-[450] outline-none"
+        type="text"
+        id="searchInput"
+        placeholder="https://www.url-to-screenshot..."
+      />
+      <button
+        class=""
+        hidden
+        id="searchInputDismiss"
+        type="button"
+        title="Clear"
+      >
+        <svg
+          class="mr-1"
+          width="16"
+          height="16"
+          fill="none"
+          viewBox="0 0 16 16"
+          class="asset_panel_search_bar--xIcon--zVMI4"
+        >
+          <path
+            fill="black"
+            fill-rule="evenodd"
+            d="M4.146 4.146a.5.5 0 0 1 .708 0L8 7.293l3.146-3.147a.5.5 0 0 1 .708.708L8.707 8l3.147 3.146a.5.5 0 0 1-.708.708L8 8.707l-3.146 3.147a.5.5 0 0 1-.708-.708L7.293 8 4.146 4.854a.5.5 0 0 1 0-.708Z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+    </search>
 
-<main class="grid select-none gap-8 overflow-hidden">
-  <input
-    class="z-10 mx-4 mt-6 rounded-md p-1 px-2 text-sm outline outline-slate-200"
-    type="text"
-    id="screenshot-url-input"
-    placeholder="URL to screenshot..."
-  />
+    <button
+      class="rounded-md bg-[#0D99FF] px-3 py-2 text-xs text-white"
+      type="submit"
+      id="captureSubmit"
+    >
+      Capture
+    </button>
+  </header>
 
-  <section class="grid gap-4">
-    <h2 class="pl-4">Frame</h2>
+  <section class="grid gap-5">
+    <h2 class="pl-4 text-xs font-[440]">Frame</h2>
 
-    <nav>
-      <ul class="flex flex-col gap-2 text-[12px] opacity-80">
-        <li class="group flex items-center gap-2">
-          <details class="group w-full">
-            <summary class="flex items-center gap-1 px-1">
-              <svg
-                class="fill-gray-400 group-open:rotate-90 group-hover:fill-black"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1rem"
-                height="1rem"
-                viewBox="0 0 20 20"
+    <ul class="flex flex-col gap-[6.8px] text-[12px] opacity-80">
+      <li class="group flex items-center gap-2">
+        <details class="group w-full">
+          <summary class="flex items-center gap-1 px-1">
+            <svg
+              class="fill-gray-400 group-open:rotate-90 group-hover:fill-black"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1rem"
+              height="1rem"
+              viewBox="0 0 20 20"
+            >
+              <path d="m8 6l6 4.03L8 14z" />
+            </svg>
+            Phone
+          </summary>
+
+          <ul class="flex flex-col pt-2">
+            <li class="flex justify-between">
+              <label
+                class="flex w-full gap-2 px-2 py-2"
+                for="iphone-14-15-pro-max"
               >
-                <path d="m8 6l6 4.03L8 14z" />
-              </svg>
-              Phone
-            </summary>
-
-            <ul class="flex flex-col pt-2">
-              <li class="flex justify-between px-4">
-                <label
-                  class="flex w-full gap-2 py-2"
-                  for="iphone-14-15-pro-max"
+                <input
+                  type="checkbox"
+                  id="iphone-14-15-pro-max"
+                  name="iphone-14-15-pro-max"
+                />
+                <span class="w-full">iPhone 14 & 15 Pro Max</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                  430&hairsp;x&hairsp;932
+                </span>
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-14-15-pro">
+                <input
+                  type="checkbox"
+                  id="iphone-14-15-pro"
+                  name="iphone-14-15-pro"
+                />
+                <span class="w-full">iPhone 14 & 15 Pro</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                  393&hairsp;x&hairsp;852</span
                 >
-                  <input
-                    type="checkbox"
-                    id="iphone-14-15-pro-max"
-                    name="iphone-14-15-pro-max"
-                  />
-                  <span class="w-full">iPhone 14 & 15 Pro Max</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
-                    430&hairsp;x&hairsp;932
-                  </span>
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-14-15-pro">
-                  <input
-                    type="checkbox"
-                    id="iphone-14-15-pro"
-                    name="iphone-14-15-pro"
-                  />
-                  <span class="w-full">iPhone 14 & 15 Pro</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
-                    393&hairsp;x&hairsp;852</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-13-14">
-                  <input
-                    type="checkbox"
-                    id="iphone-13-14"
-                    name="iphone-13-14"
-                  />
-                  <span class="w-full">iPhone 13 & 14</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >390&hairsp;x&hairsp;844</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-14-plus">
-                  <input
-                    type="checkbox"
-                    id="iphone-14-plus"
-                    name="iphone-14-plus"
-                  />
-                  <span class="w-full">iPhone 14 Plus</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >428&hairsp;x&hairsp;926</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-13-mini">
-                  <input
-                    type="checkbox"
-                    id="iphone-13-mini"
-                    name="iphone-13-mini"
-                  />
-                  <span class="w-full">iPhone 13 mini</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >375&hairsp;x&hairsp;812</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-se">
-                  <input type="checkbox" id="iphone-se" name="iphone-se" />
-                  <span class="w-full">iPhone SE</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >320&hairsp;x&hairsp;568</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-8-plus">
-                  <input
-                    type="checkbox"
-                    id="iphone-8-plus"
-                    name="iphone-8-plus"
-                  />
-                  <span class="w-full">iPhone 8 plus</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >414&hairsp;x&hairsp;736</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-8">
-                  <input type="checkbox" id="iphone-8" name="iphone-8" />
-                  <span class="w-full">iPhone 8</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >375&hairsp;x&hairsp;667</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="android-small">
-                  <input
-                    type="checkbox"
-                    id="android-small"
-                    name="android-small"
-                  />
-                  <span class="w-full">Android Small</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >360&hairsp;x&hairsp;640</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="android-large">
-                  <input
-                    type="checkbox"
-                    id="android-large"
-                    name="android-large"
-                  />
-                  <span class="w-full">Android Large</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >360&hairsp;x&hairsp;800</span
-                  >
-                </label>
-              </li>
-            </ul>
-          </details>
-        </li>
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-13-14">
+                <input type="checkbox" id="iphone-13-14" name="iphone-13-14" />
+                <span class="w-full">iPhone 13 & 14</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >390&hairsp;x&hairsp;844</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-14-plus">
+                <input
+                  type="checkbox"
+                  id="iphone-14-plus"
+                  name="iphone-14-plus"
+                />
+                <span class="w-full">iPhone 14 Plus</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >428&hairsp;x&hairsp;926</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-13-mini">
+                <input
+                  type="checkbox"
+                  id="iphone-13-mini"
+                  name="iphone-13-mini"
+                />
+                <span class="w-full">iPhone 13 mini</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >375&hairsp;x&hairsp;812</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-se">
+                <input type="checkbox" id="iphone-se" name="iphone-se" />
+                <span class="w-full">iPhone SE</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >320&hairsp;x&hairsp;568</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-8-plus">
+                <input
+                  type="checkbox"
+                  id="iphone-8-plus"
+                  name="iphone-8-plus"
+                />
+                <span class="w-full">iPhone 8 plus</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >414&hairsp;x&hairsp;736</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-8">
+                <input type="checkbox" id="iphone-8" name="iphone-8" />
+                <span class="w-full">iPhone 8</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >375&hairsp;x&hairsp;667</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="android-small">
+                <input
+                  type="checkbox"
+                  id="android-small"
+                  name="android-small"
+                />
+                <span class="w-full">Android Small</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >360&hairsp;x&hairsp;640</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="android-large">
+                <input
+                  type="checkbox"
+                  id="android-large"
+                  name="android-large"
+                />
+                <span class="w-full">Android Large</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >360&hairsp;x&hairsp;800</span
+                >
+              </label>
+            </li>
+          </ul>
+        </details>
+      </li>
 
-        <hr class="bg-[#BCBCBC]" />
-        <li class="group flex items-center gap-2">
-          <details class="w-full">
-            <summary class="flex items-center gap-1 px-1">
-              <svg
-                class="fill-gray-400 group-hover:fill-black"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1rem"
-                height="1rem"
-                viewBox="0 0 20 20"
+      <hr class="h-[1.15] bg-gray-100" />
+      <li class="group flex items-center gap-2">
+        <details class="w-full">
+          <summary class="flex items-center gap-1 px-1">
+            <svg
+              class="fill-gray-400 group-hover:fill-black"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1rem"
+              height="1rem"
+              viewBox="0 0 20 20"
+            >
+              <path d="m8 6l6 4.03L8 14z" />
+            </svg>
+            Tablet
+          </summary>
+
+          <ul class="flex flex-col pt-2">
+            <li class="flex justify-between">
+              <label
+                class="flex w-full gap-2 px-2 py-2"
+                for="iphone-14-15-pro-max"
               >
-                <path d="m8 6l6 4.03L8 14z" />
-              </svg>
-              Phone
-            </summary>
-
-            <ul class="flex flex-col pt-2">
-              <li class="flex justify-between px-2">
-                <label
-                  class="flex w-full gap-2 py-2"
-                  for="iphone-14-15-pro-max"
+                <input
+                  type="checkbox"
+                  id="iphone-14-15-pro-max"
+                  name="iphone-14-15-pro-max"
+                />
+                <span class="w-full">iPhone 14 & 15 Pro Max</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                  430&hairsp;x&hairsp;932
+                </span>
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-14-15-pro">
+                <input
+                  type="checkbox"
+                  id="iphone-14-15-pro"
+                  name="iphone-14-15-pro"
+                />
+                <span class="w-full">iPhone 14 & 15 Pro</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                  393&hairsp;x&hairsp;852</span
                 >
-                  <input
-                    type="checkbox"
-                    id="iphone-14-15-pro-max"
-                    name="iphone-14-15-pro-max"
-                  />
-                  <span class="w-full">iPhone 14 & 15 Pro Max</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
-                    430&hairsp;x&hairsp;932
-                  </span>
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-14-15-pro">
-                  <input
-                    type="checkbox"
-                    id="iphone-14-15-pro"
-                    name="iphone-14-15-pro"
-                  />
-                  <span class="w-full">iPhone 14 & 15 Pro</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
-                    393&hairsp;x&hairsp;852</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-13-14">
-                  <input
-                    type="checkbox"
-                    id="iphone-13-14"
-                    name="iphone-13-14"
-                  />
-                  <span class="w-full">iPhone 13 & 14</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >390&hairsp;x&hairsp;844</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-14-plus">
-                  <input
-                    type="checkbox"
-                    id="iphone-14-plus"
-                    name="iphone-14-plus"
-                  />
-                  <span class="w-full">iPhone 14 Plus</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >428&hairsp;x&hairsp;926</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-13-mini">
-                  <input
-                    type="checkbox"
-                    id="iphone-13-mini"
-                    name="iphone-13-mini"
-                  />
-                  <span class="w-full">iPhone 13 mini</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >375&hairsp;x&hairsp;812</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-se">
-                  <input type="checkbox" id="iphone-se" name="iphone-se" />
-                  <span class="w-full">iPhone SE</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >320&hairsp;x&hairsp;568</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-8-plus">
-                  <input
-                    type="checkbox"
-                    id="iphone-8-plus"
-                    name="iphone-8-plus"
-                  />
-                  <span class="w-full">iPhone 8 plus</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >414&hairsp;x&hairsp;736</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-8">
-                  <input type="checkbox" id="iphone-8" name="iphone-8" />
-                  <span class="w-full">iPhone 8</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >375&hairsp;x&hairsp;667</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="android-small">
-                  <input
-                    type="checkbox"
-                    id="android-small"
-                    name="android-small"
-                  />
-                  <span class="w-full">Android Small</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >360&hairsp;x&hairsp;640</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="android-large">
-                  <input
-                    type="checkbox"
-                    id="android-large"
-                    name="android-large"
-                  />
-                  <span class="w-full">Android Large</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >360&hairsp;x&hairsp;800</span
-                  >
-                </label>
-              </li>
-            </ul>
-          </details>
-        </li>
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-13-14">
+                <input type="checkbox" id="iphone-13-14" name="iphone-13-14" />
+                <span class="w-full">iPhone 13 & 14</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >390&hairsp;x&hairsp;844</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-14-plus">
+                <input
+                  type="checkbox"
+                  id="iphone-14-plus"
+                  name="iphone-14-plus"
+                />
+                <span class="w-full">iPhone 14 Plus</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >428&hairsp;x&hairsp;926</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-13-mini">
+                <input
+                  type="checkbox"
+                  id="iphone-13-mini"
+                  name="iphone-13-mini"
+                />
+                <span class="w-full">iPhone 13 mini</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >375&hairsp;x&hairsp;812</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-se">
+                <input type="checkbox" id="iphone-se" name="iphone-se" />
+                <span class="w-full">iPhone SE</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >320&hairsp;x&hairsp;568</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-8-plus">
+                <input
+                  type="checkbox"
+                  id="iphone-8-plus"
+                  name="iphone-8-plus"
+                />
+                <span class="w-full">iPhone 8 plus</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >414&hairsp;x&hairsp;736</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-8">
+                <input type="checkbox" id="iphone-8" name="iphone-8" />
+                <span class="w-full">iPhone 8</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >375&hairsp;x&hairsp;667</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="android-small">
+                <input
+                  type="checkbox"
+                  id="android-small"
+                  name="android-small"
+                />
+                <span class="w-full">Android Small</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >360&hairsp;x&hairsp;640</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="android-large">
+                <input
+                  type="checkbox"
+                  id="android-large"
+                  name="android-large"
+                />
+                <span class="w-full">Android Large</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >360&hairsp;x&hairsp;800</span
+                >
+              </label>
+            </li>
+          </ul>
+        </details>
+      </li>
 
-        <hr class="bg-[#BCBCBC]" />
-        <li class="group flex items-center gap-2">
-          <details class="w-full">
-            <summary class="flex items-center gap-1 px-1">
-              <svg
-                class="fill-gray-400 group-hover:fill-black"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1rem"
-                height="1rem"
-                viewBox="0 0 20 20"
+      <hr class="h-[1.15] bg-gray-100" />
+      <li class="group flex items-center gap-2">
+        <details class="w-full">
+          <summary class="flex items-center gap-1 px-1">
+            <svg
+              class="fill-gray-400 group-hover:fill-black"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1rem"
+              height="1rem"
+              viewBox="0 0 20 20"
+            >
+              <path d="m8 6l6 4.03L8 14z" />
+            </svg>
+            Desktop
+          </summary>
+
+          <ul class="flex flex-col pt-2">
+            <li class="flex justify-between">
+              <label
+                class="flex w-full gap-2 px-2 py-2"
+                for="iphone-14-15-pro-max"
               >
-                <path d="m8 6l6 4.03L8 14z" />
-              </svg>
-              Phone
-            </summary>
-
-            <ul class="flex flex-col pt-2">
-              <li class="flex justify-between px-2">
-                <label
-                  class="flex w-full gap-2 py-2"
-                  for="iphone-14-15-pro-max"
+                <input
+                  type="checkbox"
+                  id="iphone-14-15-pro-max"
+                  name="iphone-14-15-pro-max"
+                />
+                <span class="w-full">iPhone 14 & 15 Pro Max</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                  430&hairsp;x&hairsp;932
+                </span>
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-14-15-pro">
+                <input
+                  type="checkbox"
+                  id="iphone-14-15-pro"
+                  name="iphone-14-15-pro"
+                />
+                <span class="w-full">iPhone 14 & 15 Pro</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400">
+                  393&hairsp;x&hairsp;852</span
                 >
-                  <input
-                    type="checkbox"
-                    id="iphone-14-15-pro-max"
-                    name="iphone-14-15-pro-max"
-                  />
-                  <span class="w-full">iPhone 14 & 15 Pro Max</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
-                    430&hairsp;x&hairsp;932
-                  </span>
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-14-15-pro">
-                  <input
-                    type="checkbox"
-                    id="iphone-14-15-pro"
-                    name="iphone-14-15-pro"
-                  />
-                  <span class="w-full">iPhone 14 & 15 Pro</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400">
-                    393&hairsp;x&hairsp;852</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-13-14">
-                  <input
-                    type="checkbox"
-                    id="iphone-13-14"
-                    name="iphone-13-14"
-                  />
-                  <span class="w-full">iPhone 13 & 14</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >390&hairsp;x&hairsp;844</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-14-plus">
-                  <input
-                    type="checkbox"
-                    id="iphone-14-plus"
-                    name="iphone-14-plus"
-                  />
-                  <span class="w-full">iPhone 14 Plus</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >428&hairsp;x&hairsp;926</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-13-mini">
-                  <input
-                    type="checkbox"
-                    id="iphone-13-mini"
-                    name="iphone-13-mini"
-                  />
-                  <span class="w-full">iPhone 13 mini</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >375&hairsp;x&hairsp;812</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-se">
-                  <input type="checkbox" id="iphone-se" name="iphone-se" />
-                  <span class="w-full">iPhone SE</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >320&hairsp;x&hairsp;568</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-8-plus">
-                  <input
-                    type="checkbox"
-                    id="iphone-8-plus"
-                    name="iphone-8-plus"
-                  />
-                  <span class="w-full">iPhone 8 plus</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >414&hairsp;x&hairsp;736</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="iphone-8">
-                  <input type="checkbox" id="iphone-8" name="iphone-8" />
-                  <span class="w-full">iPhone 8</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >375&hairsp;x&hairsp;667</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="android-small">
-                  <input
-                    type="checkbox"
-                    id="android-small"
-                    name="android-small"
-                  />
-                  <span class="w-full">Android Small</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >360&hairsp;x&hairsp;640</span
-                  >
-                </label>
-              </li>
-              <li class="flex justify-between px-2 hover:bg-[#F5F5F5]">
-                <label class="flex w-full gap-2 py-2" for="android-large">
-                  <input
-                    type="checkbox"
-                    id="android-large"
-                    name="android-large"
-                  />
-                  <span class="w-full">Android Large</span>
-                  <span class="whitespace-nowrap text-[10.4px] text-gray-400"
-                    >360&hairsp;x&hairsp;800</span
-                  >
-                </label>
-              </li>
-            </ul>
-          </details>
-        </li>
-      </ul>
-    </nav>
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-13-14">
+                <input type="checkbox" id="iphone-13-14" name="iphone-13-14" />
+                <span class="w-full">iPhone 13 & 14</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >390&hairsp;x&hairsp;844</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-14-plus">
+                <input
+                  type="checkbox"
+                  id="iphone-14-plus"
+                  name="iphone-14-plus"
+                />
+                <span class="w-full">iPhone 14 Plus</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >428&hairsp;x&hairsp;926</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-13-mini">
+                <input
+                  type="checkbox"
+                  id="iphone-13-mini"
+                  name="iphone-13-mini"
+                />
+                <span class="w-full">iPhone 13 mini</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >375&hairsp;x&hairsp;812</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-se">
+                <input type="checkbox" id="iphone-se" name="iphone-se" />
+                <span class="w-full">iPhone SE</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >320&hairsp;x&hairsp;568</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-8-plus">
+                <input
+                  type="checkbox"
+                  id="iphone-8-plus"
+                  name="iphone-8-plus"
+                />
+                <span class="w-full">iPhone 8 plus</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >414&hairsp;x&hairsp;736</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="iphone-8">
+                <input type="checkbox" id="iphone-8" name="iphone-8" />
+                <span class="w-full">iPhone 8</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >375&hairsp;x&hairsp;667</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="android-small">
+                <input
+                  type="checkbox"
+                  id="android-small"
+                  name="android-small"
+                />
+                <span class="w-full">Android Small</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >360&hairsp;x&hairsp;640</span
+                >
+              </label>
+            </li>
+            <li class="flex justify-between hover:bg-[#F5F5F5]">
+              <label class="flex w-full gap-2 px-2 py-2" for="android-large">
+                <input
+                  type="checkbox"
+                  id="android-large"
+                  name="android-large"
+                />
+                <span class="w-full">Android Large</span>
+                <span class="whitespace-nowrap text-[10.4px] text-gray-400"
+                  >360&hairsp;x&hairsp;800</span
+                >
+              </label>
+            </li>
+          </ul>
+        </details>
+      </li>
+    </ul>
   </section>
-</main>
+</form>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  // #region elements
-
-  console.log("rightPanel", rightPanel);
-  const screenshotUrlInput = document.getElementById("screenshot-url-input");
-  const dimensionsBtn = document.getElementById("dimensions-btn");
-  let dimensionText = document.getElementById("selected-dimension");
-  const dimensionsList = document.getElementById("dimensions-list");
-  // prettier-ignore
-  const dimensionListItems = document.getElementsByClassName("dimensions-list-item");
-  const dimensionWidth = document.getElementById("dimension-width");
-  const dimensionHeight = document.getElementById("dimension-height");
-  const imageFrame = document.getElementById("imageFrame");
-
-  // console.log("imageFrame.ariaSetSize", imageFrame.client);
-  // #endregion elements
-
   // ------------------------------------------------------------------
   // #region server events
   // message listners for incoming server messages
   onmessage = (event) => {
-    if (event.data.pluginMessage.type === "data-dimensions") {
-      renderDimensions(JSON.parse(event.data.pluginMessage.dimensions));
-    }
-
     if (event.data.pluginMessage.type === "image") {
       const blob = new Blob([event.data.pluginMessage.uint8Array], {
         type: "image/png",
@@ -705,102 +706,65 @@ https://www.youtube.com/watch?v=gieEQFIfgYc -->
   // #endregion server events
 
   // ------------------------------------------------------------------
+  // #region elements
+  const searchInput = document.getElementById("searchInput");
+  const searchInputDismissBtn = document.getElementById("searchInputDismiss");
+  const captureSubmitBtn = document.getElementById("captureSubmit");
 
-  // #region  dynamically rendered markup
-  function renderDimensions(dimensions) {
-    function createDimensions(dimensions) {
-      dimensions.map((dimension) => {
-        const dimensionEl = document.createElement("li");
+  const labels = document.querySelectorAll("label");
 
-        // add styles
-        dimensionEl.classList.add("dimensions-list-item");
-        dimensionEl.classList.add("group");
-        dimensionEl.classList.add("hover:bg-[var(--figma-color-bg-theme)]");
-        dimensionEl.classList.add("rounded-lg");
+  // initial default viewport
+  let width = 320;
+  let height = 568;
 
-        // add markup
-        dimensionEl.innerHTML = `
-					<label class="w-full flex gap-[8px] p-2 px-4 cursor-pointer"
-						for="${dimension.deviceName.toLowerCase().split(" ").join("-")}">
-						<input
-							data-deviceName="${dimension.deviceName}"
-							data-dimension="${dimension.width},${dimension.height}"
-							class="w-4 h-4 my-auto"
-							type="checkbox"
-							id="${dimension.deviceName.toLowerCase().split(" ").join("-")}"
-							name="${dimension.deviceName.toLowerCase().split(" ").join("-")}"}"
-							value="${dimension.deviceName.toLowerCase().split(" ").join("-")}"}" />
-							<span
-								class="whitespace-nowrap group-hover:text-[var(--figma-color-text-theme)]
-								text-[var(--figma-color-text)] p-2 px-4">
-								${dimension.deviceName}
-						</span>
-					</label>
-					`;
-        dimensionsList.appendChild(dimensionEl);
-
-        // event listeners
-        dimensionEl.addEventListener("click", (event) => {
-          switch (event.target.tagName) {
-            case "SPAN":
-              return;
-            case "LABEL":
-              return;
-            default:
-              break;
-          }
-
-          const width = parseInt(event.target.dataset.dimension.split(",")[0]);
-          const height = parseInt(event.target.dataset.dimension.split(",")[1]);
-
-          // dimensionWidth.setAttribute("value", currentDimension.width);
-          // dimensionHeight.setAttribute("value", currentDimensionheight);
-          // console.log("currentDimension", currentDimension);
-          // currentDimension.width = width;
-          // currentDimension.height = height;
-          // console.log("currentDimension", currentDimension);
-          dimensionText.innerText = event.target.dataset.devicename;
-
-          parent.postMessage(
-            {
-              pluginMessage: {
-                type: "resize-figma-plugin",
-                options: { width, height },
-              },
-            },
-            "*",
-          );
-        });
-      });
-    }
-
-    createDimensions(dimensions);
-  }
-  // #endregion  dynamically rendered markup
+  // #endregion elements
 
   // ------------------------------------------------------------------
+  // #region eventListeners
 
-  // #region event listeners
-  const resizeObserver = new ResizeObserver(handleImageFrameResize);
-  resizeObserver.observe(imageFrame);
-
-  screenshotUrlInput.addEventListener("input", async (event) =>
-    handleScreenshotUrlInput(event),
-  );
-
-  dimensionsBtn.addEventListener("click", (event) =>
-    handleDimensionsBtnClick(event),
-  );
-
-  dimensionWidth.addEventListener("input", (event) => {
-    handleDimensionWidthInput(event);
+  searchInput.addEventListener("input", async (event) => {
+    searchInputDismissBtn.hidden = false;
   });
-  dimensionHeight.addEventListener("input", (event) => {
-    handleDimensionHeightInput(event);
+  searchInputDismissBtn.addEventListener("click", (event) => {
+    searchInput.value = "";
+    searchInputDismissBtn.hidden = true;
+    searchInput.focus();
   });
 
-  // #endregion event listeners
+  captureSubmitBtn.addEventListener("click", (event) => {
+    event.preventDefault();
 
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "data-viewport",
+          options: {
+            url: searchInput.value,
+            viewport: { width: parseInt(width), height: parseInt(height) },
+          },
+        },
+      },
+      "*",
+    );
+  });
+
+  labels.forEach((label) => {
+    label.addEventListener("change", (event) => {
+      const frameTypeText =
+        event.target.parentElement.lastElementChild.innerText;
+      console.log("frameTypeText", frameTypeText);
+      console.log("before: width", width);
+      console.log("before: height", height);
+      [width, height] = frameTypeText.split("x");
+      console.log("after: width", width);
+      console.log("after: height", height);
+    });
+  });
+
+  // #endregion eventListeners
+
+  // ------------------------------------------------------------------
+  // #region handlers
   function isValidUrl(url) {
     if (!url.includes(".")) return false;
 
@@ -812,9 +776,8 @@ https://www.youtube.com/watch?v=gieEQFIfgYc -->
     }
   }
 
-  // #region handlers
   function handleScreenshotUrlInput(event) {
-    const urlToScreenshot = screenshotUrlInput.value;
+    const urlToScreenshot = searchInput.value;
     const val = isValidUrl(urlToScreenshot);
     if (val) {
       console.log("val", val);
@@ -830,77 +793,7 @@ https://www.youtube.com/watch?v=gieEQFIfgYc -->
     }
   }
 
-  function handleDimensionsBtnClick(event) {
-    dimensionsList.classList.toggle("show-dimensions");
-  }
-
-  function handleDimensionWidthInput(event) {
-    const MINIMUM_WIDTH = 320;
-    const inputElement = event.target;
-    const inputValue = parseInt(inputElement.value);
-    let width = inputValue > MINIMUM_WIDTH ? inputValue : MINIMUM_WIDTH;
-    let height = parseInt(dimensionHeight.value);
-    // width = width + 32;
-    // height = height + 32;
-    if (inputValue > MINIMUM_WIDTH) {
-      parent.postMessage(
-        {
-          pluginMessage: {
-            type: "resize-figma-plugin",
-            options: { width, height },
-          },
-        },
-        "*",
-      );
-      // inputElement.setAttribute("value", width);
-      imageFrame.width = MINIMUM_WIDTH;
-    }
-  }
-
-  function handleDimensionHeightInput(event) {
-    const MINIMUM_HEIGHT = 568;
-    const inputElement = event.target;
-    const inputValue = parseInt(inputElement.value);
-    let height = inputValue > MINIMUM_HEIGHT ? inputValue : MINIMUM_HEIGHT;
-    let width = parseInt(dimensionWidth.value);
-
-    // width = width + 32;
-    // height = height + 32;
-
-    if (inputValue > MINIMUM_HEIGHT) {
-      parent.postMessage(
-        {
-          pluginMessage: {
-            type: "resize-figma-plugin",
-            options: { width, height },
-          },
-        },
-        "*",
-      );
-      inputElement.setAttribute("value", height);
-      imageFrame.height = MINIMUM_HEIGHT;
-    }
-  }
-
-  function handleImageFrameResize(entry) {
-    const target = entry[0];
-    const borderBoxSize = target.borderBoxSize;
-    let width = parseInt(borderBoxSize[0].inlineSize);
-    let height = parseInt(borderBoxSize[0].blockSize);
-
-    dimensionHeight.setAttribute("value", height);
-    dimensionWidth.setAttribute("value", width);
-
-    parent.postMessage(
-      {
-        pluginMessage: {
-          type: "resize-figma-plugin",
-          options: { width, height },
-        },
-      },
-      "*",
-    );
-  }
-
   // #endregion handlers
+
+  // ------------------------------------------------------------------
 </script>
