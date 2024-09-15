@@ -1,4 +1,5 @@
 <!-- --------------------------------------------------------------- -->
+
 <style>
   :root {
     --figma-color-bg-theme: var(--figma-color-text);
@@ -218,6 +219,7 @@
         class="w-full text-ellipsis bg-transparent px-1 text-[11px] font-[450] outline-none"
         type="text"
         id="searchInput"
+        value="https://tailwindcss.com"
         placeholder="https://www.url-to-screenshot..."
       />
       <button
@@ -280,6 +282,7 @@
                 for="iphone-14-15-pro-max"
               >
                 <input
+                  checked
                   type="checkbox"
                   id="iphone-14-15-pro-max"
                   name="iphone-14-15-pro-max"
@@ -752,12 +755,7 @@
     label.addEventListener("change", (event) => {
       const frameTypeText =
         event.target.parentElement.lastElementChild.innerText;
-      console.log("frameTypeText", frameTypeText);
-      console.log("before: width", width);
-      console.log("before: height", height);
       [width, height] = frameTypeText.split("x");
-      console.log("after: width", width);
-      console.log("after: height", height);
     });
   });
 
@@ -780,7 +778,6 @@
     const urlToScreenshot = searchInput.value;
     const val = isValidUrl(urlToScreenshot);
     if (val) {
-      console.log("val", val);
       parent.postMessage(
         {
           pluginMessage: {
