@@ -2,7 +2,7 @@
   "name": "Viewport Screenshot",
   "id": "1402824004081349351",
   "api": "1.0.0",
-  "main": "./src/plugin.js",
+  "main": "./src/plugin.ts",
   "ui": "./src/ui.html",
   "editorType": ["figma"],
   "capabilities": [],

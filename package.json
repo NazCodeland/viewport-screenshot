@@ -5,7 +5,7 @@
   "author": "NazCodeland",
   "main": "code.js",
   "scripts": {
-    "build": "bun build ./src/plugin.ts --outdir ./src/  --minify --sourcemap=inline",
+    "build": "bun build ./src/plugin.ts --minify --outdir ./dist",
     "watch": "bun run build --watch",
     "dev": "bun run --watch ./src/plugin ",
     "test": "bun run test",
@@ -14,9 +14,8 @@
     "check": "bunx biome check --write"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.0",
-    "@figma/plugin-typings": "^1.99.0",
-    "typescript": "^5.5.4"
+    "@biomejs/biome": "1.9.1",
+    "@figma/plugin-typings": "^1.99.0"
   },
   "description": "Your Figma Plugin",
   "license": "",

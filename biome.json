@@ -39,7 +39,7 @@
   },
   "linter": {
     "enabled": true,
-    "ignore": ["public/"],
+    "ignore": ["public/", "dist/"],
     "rules": {
       "complexity": {
         "noUselessTernary": "off"
