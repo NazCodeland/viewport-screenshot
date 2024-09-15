@@ -9,7 +9,7 @@
   "enableProposedApi": false,
   "documentAccess": "dynamic-page",
   "networkAccess": {
-    "allowedDomains": ["https://tailwindcss.com"],
+    "allowedDomains": ["https://cdn.tailwindcss.com"],
     "devAllowedDomains": ["https://tailwindcss.com", "http://localhost:3000"]
   }
 }
