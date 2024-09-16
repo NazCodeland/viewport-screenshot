@@ -1,5 +1,8 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "files": {
+    "ignore": ["public/", "dist/"]
+  },
   "formatter": {
     "enabled": true,
     "attributePosition": "auto",
@@ -39,7 +42,6 @@
   },
   "linter": {
     "enabled": true,
-    "ignore": ["public/", "dist/"],
     "rules": {
       "complexity": {
         "noUselessTernary": "off"

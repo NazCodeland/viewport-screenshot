@@ -5,11 +5,11 @@
       "./src/*": ["./src/*"]
     },
     // Enable latest features
-    "lib": ["ESNext"],
+    "lib": ["es2016"],
     // Enable latest features
     "module": "ESNext",
     "moduleDetection": "force",
-    "target": "ESNext",
+    "target": "es2016",
     "incremental": true,
     // Bundler mode
     "moduleResolution": "bundler",

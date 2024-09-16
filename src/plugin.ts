@@ -1,3 +1,7 @@
+type LayoutMode = 'NONE' | 'HORIZONTAL' | 'VERTICAL';
+const mode: LayoutMode = 'NONE';
+console.log('Loaded plugin', mode);
+
 if (figma.editorType === 'figma') {
   figma.showUI(__html__, {
     themeColors: true,
@@ -8,7 +12,7 @@ if (figma.editorType === 'figma') {
 
   figma.ui.onmessage = (msg) => {
     if (msg.type === 'data-viewport') {
-      const MAX_IMAGE_HEIGHT = 4096;
+      const MAX_IMAGE_HEIGHT = 4096; // this is the max height allowed per iamge.
       const options = {
         url: msg.options.url,
         viewport: msg.options.viewport,
@@ -20,8 +24,7 @@ if (figma.editorType === 'figma') {
 
       fetch(requestUrl)
         .then(async (response) => {
-          const images = await response.json();
-          return images;
+          return await response.json();
         })
         .then(async (images) => {
           try {
@@ -47,24 +50,21 @@ if (figma.editorType === 'figma') {
               maxHeight = Math.max(maxHeight, height);
             }
 
-            // Position each frame consecutively
-            let xOffset = 0;
-            for (const frame of frames) {
-              frame.x = xOffset;
-              xOffset += frame.width;
-            }
-
             // Create a new frame to contain all the individual frames
             const containerFrame = figma.createFrame();
+            const layoutMode: LayoutMode = 'HORIZONTAL';
             console.log('options.url', options.url);
             containerFrame.name = options.url.split('https://')[1];
             containerFrame.resize(totalWidth, maxHeight);
-            containerFrame.layoutMode = 'HORIZONTAL';
-            containerFrame.verticalPadding = 0;
+            containerFrame.layoutMode = layoutMode;
+            containerFrame.verticalPadding = 32;
             containerFrame.horizontalPadding = 32;
             containerFrame.primaryAxisSizingMode = 'AUTO'; // Automatically size based on children
             containerFrame.counterAxisSizingMode = 'AUTO'; // Automatically size based on children
-            containerFrame.itemSpacing = 8; // Space between items
+            if (layoutMode === 'HORIZONTAL') {
+              containerFrame.itemSpacing = 0;
+            }
+
             // Add all frames to the container frame
             for (const frame of frames) {
               containerFrame.appendChild(frame);
