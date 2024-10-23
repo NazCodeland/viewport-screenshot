@@ -1,6 +1,4 @@
 type LayoutMode = 'NONE' | 'HORIZONTAL' | 'VERTICAL';
-const mode: LayoutMode = 'NONE';
-console.log('Loaded plugin', mode);
 
 if (figma.editorType === 'figma') {
   figma.showUI(__html__, {
@@ -12,7 +10,8 @@ if (figma.editorType === 'figma') {
 
   figma.ui.onmessage = (msg) => {
     if (msg.type === 'data-viewport') {
-      const MAX_IMAGE_HEIGHT = 4096; // this is the max height allowed per iamge.
+      const MAX_IMAGE_HEIGHT = 4096; // this is the max height allowed per iamge in Figma.
+      const selectedLayout: LayoutMode = msg.options.screenshotLayout;
       const options = {
         url: msg.options.url,
         viewport: msg.options.viewport,
@@ -52,8 +51,7 @@ if (figma.editorType === 'figma') {
 
             // Create a new frame to contain all the individual frames
             const containerFrame = figma.createFrame();
-            const layoutMode: LayoutMode = 'HORIZONTAL';
-            console.log('options.url', options.url);
+            const layoutMode: LayoutMode = selectedLayout;
             containerFrame.name = options.url.split('https://')[1];
             containerFrame.resize(totalWidth, maxHeight);
             containerFrame.layoutMode = layoutMode;
