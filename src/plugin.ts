@@ -11,12 +11,14 @@ if (figma.editorType === 'figma') {
   figma.ui.onmessage = (msg) => {
     if (msg.type === 'data-viewport') {
       const MAX_IMAGE_HEIGHT = 4096; // this is the max height allowed per iamge in Figma.
-      const selectedLayout: LayoutMode = msg.options.screenshotLayout;
+      const figmaFrameLayout: LayoutMode = msg.options.figmaFrameLayout;
       const options = {
         url: msg.options.url,
         viewport: msg.options.viewport,
         imageHeight: MAX_IMAGE_HEIGHT,
       };
+
+      console.log('options', options);
       const queryString = encodeURIComponent(JSON.stringify(options));
       const requestUrl = `http://localhost:3000/?options=${queryString}`;
       console.log(requestUrl);
@@ -51,7 +53,7 @@ if (figma.editorType === 'figma') {
 
             // Create a new frame to contain all the individual frames
             const containerFrame = figma.createFrame();
-            const layoutMode: LayoutMode = selectedLayout;
+            const layoutMode: LayoutMode = figmaFrameLayout;
             containerFrame.name = options.url.split('https://')[1];
             containerFrame.resize(totalWidth, maxHeight);
             containerFrame.layoutMode = layoutMode;
