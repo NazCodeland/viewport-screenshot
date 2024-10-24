@@ -62,7 +62,7 @@ if (figma.editorType === 'figma') {
             containerFrame.primaryAxisSizingMode = 'AUTO'; // Automatically size based on children
             containerFrame.counterAxisSizingMode = 'AUTO'; // Automatically size based on children
             if (layoutMode === 'HORIZONTAL') {
-              containerFrame.itemSpacing = 0;
+              containerFrame.itemSpacing = 8;
             }
 
             // Add all frames to the container frame
